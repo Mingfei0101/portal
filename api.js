@@ -27,8 +27,8 @@ $(function() {
 
 function load_home_panel(){
     $('#home').empty();
-    tag_template = Handlebars.templates['tmpl-tag'];
-    $('#home').append(tag_template({"text":"This is a test!!!","data":"dfdfd"}));
+    tag_template = Handlebars.templates['tmpl-tags'];
+    $('#home').append(tag_template({"text":"Sarah was Here!"}));
 }
 function submit_user(){
     console.log(user_url)
