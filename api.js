@@ -18,7 +18,7 @@ $(function() {
                     return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
                 }else{
                     return ""
-                } 
+                }
     });
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
@@ -28,7 +28,7 @@ $(function() {
 function load_home_panel(){
     $('#home').empty();
     tag_template = Handlebars.templates['tmpl-tags'];
-    $('#home').append(tag_template({"text":"Sarah was Here!"}));
+    $('#home').append(tag_template({"text":"Sarah was Here!", "data":"Hi!"}));
 }
 function submit_user(){
     console.log(user_url)
@@ -79,7 +79,7 @@ function set_auth(base_url,login_url){
         user_template = Handlebars.templates['tmpl-user']
         $('#profile').append(user_template(data))
         $('#user_form').hide()
-        $('#view_form').show() 
+        $('#view_form').show()
         $('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     })
     .fail(function() {
@@ -105,7 +105,7 @@ function load_task_history(url){
         temp=item.task_name.split('.')
         item['task_name']= temp[temp.length-1]
         item.timestamp = item.timestamp.substring(0,19).replace('T',' ')
-        $('#result_tbody').append(tr_template(item)) 
+        $('#result_tbody').append(tr_template(item))
     });
     });
 }
@@ -119,7 +119,7 @@ function setTaskDisplay(data){
             rec_end = data.count;
         }else{
             rec_end = data.meta.page_size*data.meta.page;
-        }   
+        }
         $('#task_count').text('Task ' + rec_start + ' - ' + rec_end  +  ' Total ' + data.count )
     }
 
