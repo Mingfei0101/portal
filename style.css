@@ -9,6 +9,10 @@ body {background-color:#ebebeb;}
 a {
     color:#1876BA;
 }
+.tab-container{
+  width: 100%;
+  height: 100%
+}
 .dropdown-reader{
   float: left;
   width: 100%;
