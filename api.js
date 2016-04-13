@@ -39,7 +39,7 @@ $(function() {
 function load_home_panel(){
     $('#home').empty();
     reader_template = Handlebars.templates['tmpl-readers'];
-    $('#home').append(reader_template({""}));
+    $('#home').append(reader_template({"description" : "HELLO"}));
 }
 
 function select_change(reader){
