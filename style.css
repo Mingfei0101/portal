@@ -9,13 +9,16 @@ body {background-color:#ebebeb;}
 a {
     color:#1876BA;
 }
+.dropdown-reader{
+  float: left;
+  width: 100%;
+}
 .form-container{
   float: right;
   width: 100%
 }
 .dropdown {
   width:120%;
-  float: left;
 }/*
 .btn{
  width: 100%;
