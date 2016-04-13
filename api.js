@@ -27,7 +27,7 @@ $(function() {
   			var option = '';
   			option += '<option>' + value.reader_id + '</option>';
   			$('#readers-container').append(option);
-  		});
+  		})
 
       $('#readers-container').change(function(){
     		reader_change($('#readers-container').val());
