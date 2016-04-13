@@ -20,6 +20,14 @@ $(function() {
                     return ""
                 }
     });
+    $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
+  		var readers = [];
+  		$.each(data.results, function(index, value) {
+  			var option = '';
+  			option += '<option>' + value.reader_id + '</option>';
+  			$('#readers-container').append(option);
+
+  		});
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
     load_home_panel();
@@ -28,7 +36,7 @@ $(function() {
 function load_home_panel(){
     $('#home').empty();
     reader_template = Handlebars.templates['tmpl-readers'];
-    $('#home').append(reader_template({"description":"Sarah was Here!"}));
+    $('#home').append(reader_template({""}));
 }
 function submit_user(){
     console.log(user_url)
