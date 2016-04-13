@@ -28,7 +28,7 @@ $(function() {
 function load_home_panel(){
     $('#home').empty();
     reader_template = Handlebars.templates['tmpl-readers'];
-    $('#home').append(reader_template({"text":"Sarah was Here!", "data":"Hi!"}));
+    $('#home').append(reader_template({"description":"Sarah was Here!"}));
 }
 function submit_user(){
     console.log(user_url)
