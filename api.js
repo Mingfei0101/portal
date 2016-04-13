@@ -20,17 +20,20 @@ $(function() {
                     return ""
                 }
     });
+    load_home_panel();
     $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
   		var readers = [];
   		$.each(data.results, function(index, value) {
   			var option = '';
   			option += '<option>' + value.reader_id + '</option>';
   			$('#readers-container').append(option);
-
   		});
+
+      $('#readers-container').change(function(){
+    		reader_change($('#readers-container').val());
+    	})
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
-    load_home_panel();
 });//End of Document Ready
 
 function load_home_panel(){
@@ -38,6 +41,16 @@ function load_home_panel(){
     reader_template = Handlebars.templates['tmpl-readers'];
     $('#home').append(reader_template({""}));
 }
+
+function select_change(reader){
+	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader, function(data){
+		$.each(data, function(key, value){
+	    $('[name='+key+']').val(value);
+		});
+		//alert(JSON.stringify(data));
+	})
+};
+
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
