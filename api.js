@@ -29,14 +29,14 @@ function load_home_panel(){
   $('#home').empty();
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
     var readers = [];
+    var option = '';
     $.each(data.results, function(index, value) {
-      var option = '';
       option += '<option>' + value.reader_id + '</option>';
       //$('#readers-container').append(option);
     });
+    reader_template = Handlebars.templates['tmpl-readers'];
+   $('#home').append(reader_template({"selction" : option}));
   });
-  reader_template = Handlebars.templates['tmpl-readers'];
- $('#home').append(reader_template({"selction" : option}));
 };
 
 function select_change(reader){
