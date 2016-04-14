@@ -40,6 +40,18 @@ function select_change(reader){
 	})
 };
 
+function reader_change(reader){
+	$('#grid-basic tbody').remove();
+	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
+		$.each(data.results, function(key, value){
+			var dataTable = '';
+			dataTable += value.tag;
+			dataTable += value.tag_timestamp;
+			$('#grid-basic').append(dataTable);
+		});
+	})
+};
+
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
