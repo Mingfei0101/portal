@@ -28,13 +28,17 @@ $(function() {
 function load_home_panel(){
   $('#home').empty();
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
-    var readers = [];
+    var rdrs = [];
     $.each(data.results, function(index, value) {
-      readers.push(value.reader_id);
+      rdrs.push(value.reader_id);
       //$('#readers-container').append(option);
     });
     reader_template = Handlebars.templates['tmpl-readers'];
-   $('#home').append(reader_template({"readers" : readers}));
+    context = {
+        readers: rdrs
+    };
+    console.log(context);
+   $('#home').append(reader_template(context));
   });
 };
 
