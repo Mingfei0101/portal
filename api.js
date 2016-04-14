@@ -29,13 +29,12 @@ function load_home_panel(){
   $('#home').empty();
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
     var readers = [];
-    var option = '';
     $.each(data.results, function(index, value) {
-      option += '<option>' + value.reader_id + '</option>';
+      readers.push(value.reader_id);
       //$('#readers-container').append(option);
     });
     reader_template = Handlebars.templates['tmpl-readers'];
-   $('#home').append(reader_template({"selection" : option}));
+   $('#home').append(reader_template({"readers" : readers}));
   });
 };
 
