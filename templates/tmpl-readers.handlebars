@@ -2,13 +2,8 @@
   <div class = "tab-container"> <!--tab container div-->
     <div class = "dropdown-reader"> <!--dropdown div-->
       <select class="btn btn-default dropdown-toggle" type="button" id="readers-container" size = "10" data-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
-        <!--comemnt-->
-        <option>TEST</option>
-        <option>{{test}}</option>
         {{#each readers}}
             <option>{{this}}</option>
-        {{else}}
-            <option>No options</option>
         {{/each}}
       </select>
     </div> <!--end of dropdown div-->

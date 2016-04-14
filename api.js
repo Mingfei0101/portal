@@ -35,8 +35,7 @@ function load_home_panel(){
     });
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
-        readers: rdrs,
-        test: "Test"
+        readers: rdrs
     };
     console.log(context);
    $('#home').append(reader_template(context));
