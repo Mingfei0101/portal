@@ -18,8 +18,12 @@ a {
   width: 30%;
 }
 .form-container{
+  margin: 0 auto;
+  width: 40%
+}
+.tagTable{
   float: right;
-  width: 50%
+  width: 30%
 }
 .dropdown {
   width:120%;
