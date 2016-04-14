@@ -2,8 +2,9 @@
   <div class = "tab-container"> <!--tab container div-->
     <div class = "dropdown-reader"> <!--dropdown div-->
       <select class="btn btn-default dropdown-toggle" type="button" id="readers-container" size = "10" data-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
-        <option>{{test}}</option>
+        <!--comemnt-->
         <option>TEST</option>
+        <option>{{test}}</option>
         {{#each readers}}
             <option>{{this}}</option>
         {{/each}}
@@ -14,27 +15,27 @@
       <form name="myForm" id="submitForm" >
         <div class="form-group">
           <label class="control-label" for="url">URL</label>
-          <input type="text" class="form-control" name="{{url}}">
+          <input type="text" class="form-control" name="url">
         </div>
 
         <div class="form-group">
           <label class="control-label" for="reader_id">Reader ID</label>
-          <input type="text" class="form-control" name="{{reader_id}}">
+          <input type="text" class="form-control" name="reader_id">
         </div>
 
         <div class="form-group">
           <label class="control-label" for="name">Name</label>
-          <input type="text" class="form-control" name="{{name}}">
+          <input type="text" class="form-control" name="name">
         </div>
 
         <div class="form-group">
           <label class="control-label" for="description">Description</label>
-          <input type="text" class="form-control" name="{{description}}">
+          <input type="text" class="form-control" name="description">
         </div>
 
         <div class="form-group">
           <label class="control-label" for="user_id">User ID</label>
-          <input type="text" class="form-control" name="{{user_id}}">
+          <input type="text" class="form-control" name="user_id">
         </div>
 
         <div class="form-group">
