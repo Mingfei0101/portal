@@ -35,7 +35,7 @@ function load_home_panel(){
       //$('#readers-container').append(option);
     });
     reader_template = Handlebars.templates['tmpl-readers'];
-   $('#home').append(reader_template({"selction" : "<option>12007</option>"}));
+   $('#home').append(reader_template({"selction" : option}));
   });
 };
 
