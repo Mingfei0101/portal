@@ -21,27 +21,23 @@ $(function() {
                 }
     });
     load_home_panel();
-
-    $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
-  		var readers = [];
-  		$.each(data.results, function(index, value) {
-  			//if ($.inArray(value.reader, readers) == -1) {
-  			//readers.push(value.reader);
-  			//}
-  			var option = '';
-  			option += '<option>' + value.reader_id + '</option>';
-  			$('#readers-container').append(option);
-
-  		});
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
 
 function load_home_panel(){
-    $('#home').empty();
-    reader_template = Handlebars.templates['tmpl-readers'];
-    $('#home').append(reader_template({"description" : "HELLO"}));
-}
+  $('#home').empty();
+  $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
+    var readers = [];
+    $.each(data.results, function(index, value) {
+      var option = '';
+      option += '<option>' + value.reader_id + '</option>';
+      $('#home').append(option);
+      reader_template = Handlebars.templates['tmpl-readers'];
+      //$('#home').append(reader_template({"description" : "HELLO"}));
+    });
+  });
+};
 
 function select_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader, function(data){
