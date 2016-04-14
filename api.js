@@ -32,9 +32,9 @@ function load_home_panel(){
     $.each(data.results, function(index, value) {
       var option = '';
       option += '<option>' + value.reader_id + '</option>';
-      $('#readers-container').append(option);
+      //$('#readers-container').append(option);
       reader_template = Handlebars.templates['tmpl-readers'];
-    //  $('#home').append(reader_template({"description" : "HELLO"}));
+     $('#home').append(reader_template({"description" : "HELLO"}));
     });
   });
 };
