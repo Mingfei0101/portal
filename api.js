@@ -33,7 +33,7 @@ function load_home_panel(){
       rdrs.push(value.reader_id);
       //$('#readers-container').append(option);
     });
-    reader_template = Handlebars.templates['tmpl-readers'];
+    reader_template = Handlebars.compile(Handlebars.templates['tmpl-readers']);
     var context = {
         readers: rdrs,
         test: "Test"
