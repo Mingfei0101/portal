@@ -33,9 +33,9 @@ function load_home_panel(){
       var option = '';
       option += '<option>' + value.reader_id + '</option>';
       //$('#readers-container').append(option);
-      reader_template = Handlebars.templates['tmpl-readers'];
-     $('#dropdown-reader').append(reader_template({"selection" : option}));
     });
+    reader_template = Handlebars.templates['tmpl-readers'];
+   $('#home').append(reader_template({"selection" : option}));
   });
 };
 
