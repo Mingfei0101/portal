@@ -41,7 +41,7 @@ function load_home_panel(){
   $('#home').change(function(){
 		select_change($('#readers-container').val());
 	})
-  $('#readers-container').change(function(){
+  $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
 };
