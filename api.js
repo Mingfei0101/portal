@@ -38,7 +38,7 @@ function load_home_panel(){
     };
    $('#home').append(reader_template(context));
   });
-  $('#readers-container').change(function(){
+  $('#home').change(function(){
 		select_change($('#readers-container').val());
 	})
   $('#readers-container').change(function(){
