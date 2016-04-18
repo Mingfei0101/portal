@@ -63,10 +63,10 @@ function reader_change(reader){
 			dataTable += value.tag_timestamp;
 		});
     reader_template = Handlebars.templates['tmpl-readers'];
-    var context = {
+    var data = {
         tag: dataTable
       }
-      $('#grid-basic').append(reader_template(context));
+      $('#grid-basic').append(data);
 	})
 };
 
