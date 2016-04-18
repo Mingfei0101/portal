@@ -51,6 +51,7 @@ function select_change(reader){
 		$.each(data, function(key, value){
 	    $('[name='+key+']').val(value);
 		});
+		//alert(JSON.stringify(data));
 	})
 };
 
@@ -61,12 +62,8 @@ function reader_change(reader){
 			var dataTable = '';
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
+			$('#grid-basic').append(dataTable);
 		});
-    reader_template = Handlebars.templates['tmpl-readers'];
-    var context = {
-        tag: dataTable
-      }
-      $('#grid-basic').append(reader_template(context));
 	})
 };
 

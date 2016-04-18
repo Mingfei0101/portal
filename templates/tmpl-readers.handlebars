@@ -53,12 +53,12 @@
           </tr>
         </thead>
         <tbody>
+          {{#each tag}}
           <tr>
-            {{#each tag}}
-                <td>{{this}}</td>
-                <td>{{this}}</td>
-            {{/each}}
+            <td>{{this}}</td>
+            <td>{{this}}</td>
           </tr>
+          {{/each}}
         </tbody>
       </table>
     </div> <!--end of table div-->
