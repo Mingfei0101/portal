@@ -38,11 +38,9 @@ function load_home_panel(){
     };
    $('#home').append(reader_template(context));
   });
-
   $('#home').change(function(){
 		select_change($('#readers-container').val());
 	})
-
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
@@ -64,7 +62,7 @@ function reader_change(reader){
 			var dataTable = '';
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
-			$('#home').append(dataTable);
+			$('#grid-basic').append(dataTable);
 		});
 	})
 };
