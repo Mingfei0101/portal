@@ -51,7 +51,6 @@ function select_change(reader){
 		$.each(data, function(key, value){
 	    $('[name='+key+']').val(value);
 		});
-		//alert(JSON.stringify(data));
 	})
 };
 
@@ -59,11 +58,16 @@ function reader_change(reader){
 	$('#grid-basic tbody').remove();
 	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
 		$.each(data.results, function(key, value){
-			var dataTable = '';
-			dataTable += value.tag;
-			dataTable += value.tag_timestamp;
-			$('#grid-basic').append(dataTable);
+			var dataTag = '';
+      var dataTime = '';
+			dataTag += value.tag;
+			dataTime += value.tag_timestamp;
 		});
+    reader_template = Handlebars.templates['tmpl-readers'];
+    var context = {
+        tag: dataTag, dataTime
+      }
+      $('#grid-basic').append(reader_template(context));
 	})
 };
 
