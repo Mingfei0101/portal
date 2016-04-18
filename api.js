@@ -38,9 +38,11 @@ function load_home_panel(){
     };
    $('#home').append(reader_template(context));
   });
+
   $('#home').change(function(){
 		select_change($('#readers-container').val());
 	})
+
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
@@ -56,13 +58,13 @@ function select_change(reader){
 };
 
 function reader_change(reader){
-	$('#grid-basic tbody').remove();
+	//$('#home').remove();
 	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
 		$.each(data.results, function(key, value){
 			var dataTable = '';
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
-			$('#grid-basic').append(dataTable);
+			$('#home').append(dataTable);
 		});
 	})
 };
