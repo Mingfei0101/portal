@@ -66,7 +66,7 @@ function reader_change(reader){
     var context = {
         tags: dataTable
     };
-   $('#grid-basic').append(tags_template(context));
+   $('#home').append(tags_template(context));
 	})
 };
 
