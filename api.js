@@ -57,8 +57,8 @@ function select_change(reader){
 function reader_change(reader){
 	$('#grid-basic tbody').remove();
 	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
-		$.each(data.results, function(key, value){
-			var dataTable = '';
+    var dataTable = '';
+    $.each(data.results, function(key, value){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
 		});
