@@ -57,13 +57,16 @@ function select_change(reader){
 function reader_change(reader){
 	$('#grid-basic tbody').remove();
 	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
+    var dataTable = '';
     $.each(data.results, function(key, value){
-      var dataTable = '';
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
-      $('#grid-basic').append(dataTable);
 		});
-
+    reader_template = Handlebars.templates['tmpl-readers'];
+    var context = {
+        tags: dataTable
+    };
+   $('#grid-basic').append(tags_template(context));
 	})
 };
 

@@ -1,1 +1,20 @@
-<div> {{ text }} </div>
+<div>
+  <div class = tagTable> <!--table div-->
+  <table id="grid-basic" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th data-column-id="tag">Tag</th>
+        <th data-column-id="tag-timestamp">Tag Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each results}}
+      <tr>
+        <td>{{tag}}</td>
+        <td>{{tag_timestamp}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div> <!--end of table div-->
+</div>
