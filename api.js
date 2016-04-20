@@ -66,7 +66,7 @@ function reader_change(reader){
     var table = {
         results: dataTable
     };
-   $('#home').append(tags_template(table));
+   $('#tbody').append(tags_template(table));
 	})
 };
 
