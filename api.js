@@ -36,9 +36,7 @@ function load_home_panel(){
     var context = {
         readers: rdrs
     };
-    tag_template = Handlebars.templates['tmpl-tags'];
    $('#home').append(reader_template(context));
-   $('#home').append(tag_template());
   });
   $('#home').change(function(){
 		select_change($('#readers-container').val());
