@@ -62,10 +62,7 @@ function reader_change(reader){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
 		});
-    var table{
-      results: dataTable
-    };
-      $('#grid-basic').append(table);
+      $('#grid-basic').append(dataTable);
 	})
 };
 
