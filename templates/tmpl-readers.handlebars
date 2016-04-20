@@ -52,12 +52,12 @@
           </tr>
         </thead>
         <tbody>
-          {{#results}}
+          {{#each results}}
           <tr>
-            <td>{{tag}}</td>
-            <td>{{tag_timestamp}}</td>
+            <td>{{this.tag}}</td>
+            <td>{{this.tag_timestamp}}</td>
           </tr>
-          {{/results}}
+          {{/each}}
         </tbody>
       </table>
     </div> <!--end of table div-->
