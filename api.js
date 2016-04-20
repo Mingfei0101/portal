@@ -64,7 +64,7 @@ function reader_change(reader){
 		});
     var data{
       results: dataTable
-    }
+    };
       $('#grid-basic').append(data);
 	})
 };
