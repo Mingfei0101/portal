@@ -64,7 +64,7 @@ function reader_change(reader){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
 		});
-    var table{
+    var table = {
       results: dataTable
     };
     tag_template = Handlebars.templates['tmpl-tags'];
