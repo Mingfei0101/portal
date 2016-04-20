@@ -61,8 +61,9 @@ function reader_change(reader){
     $.each(data.results, function(key, value){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
-		});
       $('#grid-basic').append(dataTable);
+		});
+
 	})
 };
 
