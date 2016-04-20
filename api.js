@@ -59,11 +59,14 @@ function reader_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
     var dataTable = '';
     $.each(data.results, function(key, value){
-			dataTable += value.tag;
-			dataTable += value.tag_timestamp;
-		});
-      $('#grid-basic').append(dataTable);
-	})
+      dataTable += value.tag;
+      dataTable += value.tag_timestamp;
+    });
+    var data = {
+      results: dataTable
+    };
+    $('#grid-basic').append(data);
+  })
 };
 
 function submit_user(){
