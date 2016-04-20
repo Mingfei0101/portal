@@ -61,11 +61,8 @@ function reader_change(reader){
     $.each(data.results, function(key, value){
 			dataTable += value.tag_timestamp;
 		});
-    var table = {
-      results: dataTable
-    };
     tag_template = Handlebars.templates['tmpl-tags'];
-   $('#home').append(tag_template(table));
+   $('#home').append(tag_template(dataTable));
 	})
 };
 
