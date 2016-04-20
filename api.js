@@ -64,7 +64,11 @@ function reader_change(reader){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
 		});
-      $('#home').append(dataTable);
+    var table{
+      results: dataTable
+    };
+    tag_template = Handlebars.templates['tmpl-tags'];
+   $('#home').append(tag_template(table));
 	})
 };
 
