@@ -46,7 +46,6 @@ function load_home_panel(){
 		reader_change($('#readers-container').val());
 	})
   $$('form').on('submit', function(e){
-    console.log(reader_url)
     /*var $form = $(this),
     url = $form.find( "input[name='url']" ).val(),
     reader_id = $form.find( "input[name='reader_id']" ).val(),
