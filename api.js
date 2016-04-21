@@ -45,13 +45,9 @@ $(function() {
 function load_home_panel(){
   $('#home').empty();
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
-    var rdrs = [];
-    $.each(data.results, function(index, value) {
-      rdrs.push(value.reader_id);
-    });
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
-        readers: rdrs
+        readers: data.results 
     };
    $('#home').append(reader_template(context));
    $('#readers-container').change(function(){select_change($('#readers-container').val()); });
