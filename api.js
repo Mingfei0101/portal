@@ -69,7 +69,7 @@ function select_change(reader){
 		//$.each(data, function(key, value){
 	        //    $('[name='+key+']').val(value);
 		//});
-	})
+	});
 };
 
 function reader_change(reader){
