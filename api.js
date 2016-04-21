@@ -66,7 +66,7 @@ function reader_change(reader){
 	})
 };
 
-$("#submitForm").submit(function(event){
+$("#submit").submit(function(event){
 
   event.preventDefault();
   var $form = $(this),
