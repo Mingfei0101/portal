@@ -33,7 +33,7 @@ $(function() {
         description: description, user_id: user_id}, function(data){
           alert(JSON.stringify(data));
         });*/
-        alert("HELLO");
+        console.log("HELLO");
         $.post( reader_url,$('#form-container').serializeObject(),function(data){
             alert("HELLO");
         })
