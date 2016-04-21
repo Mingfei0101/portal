@@ -54,8 +54,11 @@ function load_home_panel(){
         readers: rdrs
     };
    $('#home').append(reader_template(context));
+   $('#readers-container').change(function(){select_change($('#readers-container').val()); });
   });
-  $('#readers-container').change(function(){select_change($('#readers-container').val()); });
+
+  //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
+
   /*$('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
