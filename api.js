@@ -6,6 +6,7 @@ $(function() {
     logout_url = base_url + "/api-auth/logout/?next=";
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
     user_url = base_url + "/user/?format=json";
+    reader_url = base_url + "/etag/readers/.json?page_size=20";
     prevlink=null;nextlink=null;
     set_auth(base_url,login_url);
     $("#aprofile").click(function(){activaTab('profile')})
@@ -44,19 +45,21 @@ function load_home_panel(){
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
-  $("#submit").click(function(event){
-    event.preventDefault();
-    var $form = $(this),
+  $("#submitButton").click(function(event){
+    console.log(reader_url)
+    /*var $form = $(this),
     url = $form.find( "input[name='url']" ).val(),
     reader_id = $form.find( "input[name='reader_id']" ).val(),
     name = $form.find( "input[name='name']" ).val(),
     description = $form.find( "input[name='description']" ).val(),
     user_id = $form.find( "input[name='user_id']" ).val(),
-    urlReader = "http://head.ouetag.org/api/etag/readers/.json?page_size=20";
-    $.post(urlReader, {url: url, reader_id: reader_id, name: name,
+    $.post(reader_url, {url: url, reader_id: reader_id, name: name,
       description: description, user_id: user_id}, function(data){
         alert(JSON.stringify(data));
-      });
+      });*/
+      $.post( reader_url,$('#form-container').serializeObject(),function(data){
+          alert("HELLO");
+      })
     });
 };
 
