@@ -63,7 +63,7 @@ function load_home_panel(){
 };
 
 function select_change(reader){
-	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader, function(data){
+	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form']
                 $('#readers-form').empty()
                 $('#readers-form').append(reader_form_template(data) )
