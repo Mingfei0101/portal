@@ -55,19 +55,21 @@ function load_home_panel(){
     };
    $('#home').append(reader_template(context));
   });
-  $('#home').change(function(){
-		select_change($('#readers-container').val());
-	})
-  $('#home').change(function(){
+  $('#readers-container').change(function(){select_change($('#readers-container').val()); });
+  /*$('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
+    */
 };
 
 function select_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader, function(data){
-		$.each(data, function(key, value){
-	    $('[name='+key+']').val(value);
-		});
+                reader_form_template = Handlebars.templates['tmpl-readers-form']
+                $('#readers-form').empty()
+                $('#readers-form').append(reader_form_template(data) )
+		//$.each(data, function(key, value){
+	        //    $('[name='+key+']').val(value);
+		//});
 	})
 };
 
