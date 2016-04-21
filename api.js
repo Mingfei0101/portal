@@ -75,7 +75,7 @@ $("#submit").submit(function(event){
   name = $form.find( "input[name='name']" ).val(),
   description = $form.find( "input[name='description']" ).val(),
   user_id = $form.find( "input[name='user_id']" ).val(),
-  urlReader = $form.attr( "post" );
+  urlReader = "http://head.ouetag.org/api/etag/readers/.json?page_size=20";
   $.post(urlReader, {url: url, reader_id: reader_id, name: name,
     description: description, user_id: user_id}, function(data){
       alert(JSON.stringify(data));
