@@ -44,6 +44,20 @@ function load_home_panel(){
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
+  $("#submit").submit(function(event){
+    event.preventDefault();
+    var $form = $(this),
+    url = $form.find( "input[name='url']" ).val(),
+    reader_id = $form.find( "input[name='reader_id']" ).val(),
+    name = $form.find( "input[name='name']" ).val(),
+    description = $form.find( "input[name='description']" ).val(),
+    user_id = $form.find( "input[name='user_id']" ).val(),
+    urlReader = "http://head.ouetag.org/api/etag/readers/.json?page_size=20";
+    $.post(urlReader, {url: url, reader_id: reader_id, name: name,
+      description: description, user_id: user_id}, function(data){
+        alert(JSON.stringify(data));
+      });
+    });
 };
 
 function select_change(reader){
@@ -65,23 +79,6 @@ function reader_change(reader){
       //$('#grid-basic').append(dataTable);
 	})
 };
-
-$("#submit").submit(function(event){
-
-  event.preventDefault();
-  var $form = $(this),
-  url = $form.find( "input[name='url']" ).val(),
-  reader_id = $form.find( "input[name='reader_id']" ).val(),
-  name = $form.find( "input[name='name']" ).val(),
-  description = $form.find( "input[name='description']" ).val(),
-  user_id = $form.find( "input[name='user_id']" ).val(),
-  urlReader = "http://head.ouetag.org/api/etag/readers/.json?page_size=20";
-  $.post(urlReader, {url: url, reader_id: reader_id, name: name,
-    description: description, user_id: user_id}, function(data){
-      alert(JSON.stringify(data));
-    });
-
-  });
 
 function submit_user(){
     console.log(user_url)
