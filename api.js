@@ -62,9 +62,26 @@ function reader_change(reader){
 			dataTable += value.tag;
 			dataTable += value.tag_timestamp;
 		});
-      $('#grid-basic').append(dataTable);
+      //$('#grid-basic').append(dataTable);
 	})
 };
+
+$("#submitForm").submit(function(event){
+
+  event.preventDefault();
+  var $form = $(this),
+  url = $form.find( "input[name='url']" ).val(),
+  reader_id = $form.find( "input[name='reader_id']" ).val(),
+  name = $form.find( "input[name='name']" ).val(),
+  description = $form.find( "input[name='description']" ).val(),
+  user_id = $form.find( "input[name='user_id']" ).val(),
+  urlReader = $form.attr( "post" );
+  $.post(urlReader, {url: url, reader_id: reader_id, name: name,
+    description: description, user_id: user_id}, function(data){
+      alert(JSON.stringify(data));
+    });
+
+  });
 
 function submit_user(){
     console.log(user_url)
