@@ -45,7 +45,7 @@ function load_home_panel(){
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
-  $('#submitButton').on("click",function(){
+  $$('form').on('submit', function(e){
     console.log(reader_url)
     /*var $form = $(this),
     url = $form.find( "input[name='url']" ).val(),
