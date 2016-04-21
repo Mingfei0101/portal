@@ -22,7 +22,7 @@ $(function() {
                 }
     });
     load_home_panel();
-    $('#submitButton').click(function(event){
+    $('#submitButton').submit(function(event){
       /*var $form = $(this),
       url = $form.find( "input[name='url']" ).val(),
       reader_id = $form.find( "input[name='reader_id']" ).val(),
