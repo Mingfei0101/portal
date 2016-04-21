@@ -22,6 +22,22 @@ $(function() {
                 }
     });
     load_home_panel();
+    $('#submitButton').click(function(event){
+      /*var $form = $(this),
+      url = $form.find( "input[name='url']" ).val(),
+      reader_id = $form.find( "input[name='reader_id']" ).val(),
+      name = $form.find( "input[name='name']" ).val(),
+      description = $form.find( "input[name='description']" ).val(),
+      user_id = $form.find( "input[name='user_id']" ).val(),
+      $.post(reader_url, {url: url, reader_id: reader_id, name: name,
+        description: description, user_id: user_id}, function(data){
+          alert(JSON.stringify(data));
+        });*/
+        alert("HELLO");
+        $.post( reader_url,$('#form-container').serializeObject(),function(data){
+            alert("HELLO");
+        })
+      });
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
 });//End of Document Ready
@@ -45,22 +61,6 @@ function load_home_panel(){
   $('#home').change(function(){
 		reader_change($('#readers-container').val());
 	})
-  $('#submitButton').click(function(event){
-    /*var $form = $(this),
-    url = $form.find( "input[name='url']" ).val(),
-    reader_id = $form.find( "input[name='reader_id']" ).val(),
-    name = $form.find( "input[name='name']" ).val(),
-    description = $form.find( "input[name='description']" ).val(),
-    user_id = $form.find( "input[name='user_id']" ).val(),
-    $.post(reader_url, {url: url, reader_id: reader_id, name: name,
-      description: description, user_id: user_id}, function(data){
-        alert(JSON.stringify(data));
-      });*/
-      alert("HELLO");
-      $.post( reader_url,$('#form-container').serializeObject(),function(data){
-          alert("HELLO");
-      })
-    });
 };
 
 function select_change(reader){
