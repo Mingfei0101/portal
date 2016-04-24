@@ -80,7 +80,7 @@ function reader_change(reader){
     var context = {
         results: data.results
     };
-    $('#tagTable').empty();
+    //$('#tagTable').empty();
     $('#tagTable').append(tags_table_template(context));
     //$('#grid-basic').append(dataTable);
   })
