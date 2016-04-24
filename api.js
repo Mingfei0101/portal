@@ -77,8 +77,11 @@ function reader_change(reader){
   //$('#grid-basic tbody').remove();
   $.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
+    var context = {
+        results: data.results
+    };
     $('#tagTable').empty();
-    $('#tagTable').append(tags_table_template(data));
+    $('#tagTable').append(tags_table_template(context));
     //$('#grid-basic').append(dataTable);
   })
 };
