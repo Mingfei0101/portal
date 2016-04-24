@@ -22,7 +22,7 @@ a {
   width: 40%;
   display: inline-block;
 }
-.tags-table{
+.table-container{
   float: right;
   width: 30%;
 }
