@@ -44,13 +44,14 @@ $(function() {
 
 function load_home_panel(){
   $('#home').empty();
-  $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20", function(data) {
+  $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
-        readers: data.results 
+        readers: data.results
     };
    $('#home').append(reader_template(context));
-   $('#readers-container').change(function(){select_change($('#readers-container').val()); });
+   $('#readers-container').change(function(){select_change($('#readers-container').val());
+   reader_change($('#readers-container').val()); });
   });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
@@ -63,9 +64,9 @@ function load_home_panel(){
 
 function select_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader + "/.json" , function(data){
-                reader_form_template = Handlebars.templates['tmpl-readers-form']
-                $('#readers-form').empty()
-                $('#readers-form').append(reader_form_template(data) )
+                reader_form_template = Handlebars.templates['tmpl-readers-form'];
+                $('#readers-form').empty();
+                $('#readers-form').append(reader_form_template(data));
 		//$.each(data, function(key, value){
 	        //    $('[name='+key+']').val(value);
 		//});
@@ -73,15 +74,13 @@ function select_change(reader){
 };
 
 function reader_change(reader){
-	//$('#grid-basic tbody').remove();
-	$.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
-    var dataTable = [];
-    $.each(data.results, function(key, value){
-			dataTable += value.tag;
-			dataTable += value.tag_timestamp;
-		});
-      //$('#grid-basic').append(dataTable);
-	})
+  //$('#grid-basic tbody').remove();
+  $.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=20", function(data){
+    tags_table_template = Handlebars.templates['tmpl-tags-table'];
+    $('#tagTable').empty();
+    $('#tagTable').append(tags_table_template(data));
+    //$('#grid-basic').append(dataTable);
+  })
 };
 
 function submit_user(){

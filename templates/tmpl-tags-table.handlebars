@@ -1,0 +1,16 @@
+<table id="grid-basic" name="myTable" class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th data-column-id="tag">Tag</th>
+      <th data-column-id="tag-timestamp">Tag Timestamp</th>
+    </tr>
+  </thead>
+  <tbody id ="tagRow">
+    {{#each results}}
+    <tr>
+      <td>{{this.tag}}</td>
+      <td>{{this.tag_timestamp}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
