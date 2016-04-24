@@ -47,19 +47,21 @@ function load_home_panel(){
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
-        readers: data.results
+      readers: data.results
     };
-   $('#home').append(reader_template(context));
-   $('#readers-container').change(function(){select_change($('#readers-container').val());
-   reader_change($('#readers-container').val()); });
+    $('#home').append(reader_template(context));
+    $('#readers-container').change(function(){
+      select_change($('#readers-container').val());
+      reader_change($('#readers-container').val());
+    });
   });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
 
   /*$('#home').change(function(){
-		reader_change($('#readers-container').val());
-	})
-    */
+  reader_change($('#readers-container').val());
+})
+*/
 };
 
 function select_change(reader){
@@ -80,8 +82,8 @@ function reader_change(reader){
     var context = {
         results: data.results
     };
-    //$('#tagTable').empty();
-    $('#tagTable').append(tags_table_template(context));
+    $('#tags-Table').empty();
+    $('#tags-table').append(tags_table_template(context));
     //$('#grid-basic').append(dataTable);
   })
 };
