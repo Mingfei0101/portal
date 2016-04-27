@@ -37,7 +37,7 @@ $(function() {
     var context = {
       readers: data.results
     };
-    $('#home').append(reader_template(context));
+    //$('#home').append(reader_template(context));
     $('#readers-container').change(function(){
       select_change($('#readers-container').val());
       reader_change($('#readers-container').val());
