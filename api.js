@@ -23,7 +23,7 @@ $(function() {
     });
     load_home_panel();
     $( "#sumbitForm" ).submit(function( event ) {
-      console.log( $( this ).serializeArray() );
+      console.log( $( this ).serializeObject() );
       event.preventDefault();
     });
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
