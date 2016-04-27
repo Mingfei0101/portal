@@ -15,24 +15,22 @@ $(function() {
     $('#prevlink').click(function(){load_task_history(prevlink);});
     $('#nextlink').click(function(){load_task_history(nextlink);});
     Handlebars.registerHelper('json_metatags', function(context) {
-                if (typeof context !== 'undefined') {
-                    return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
-                }else{
-                    return ""
-                }
+      if (typeof context !== 'undefined') {
+        return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
+      }else{
+        return ""
+      }
     });
     load_home_panel();
-    $('#submitForm').submit(function(event){
-        console.log("HELLO");
-        $.post( reader_url,$('#submitForm').serializeObject(),function(data){
-            alert("HELLO");
-        })
-      });
+    $( "#sumbitForm" ).submit(function( event ) {
+      console.log( $( this ).serializeArray() );
+      event.preventDefault();
+    });
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
-});//End of Document Ready
+  });//End of Document Ready
 
-function load_home_panel(){
+  function load_home_panel(){
   $('#home').empty();
   $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
     reader_template = Handlebars.templates['tmpl-readers'];
