@@ -23,16 +23,6 @@ $(function() {
     });
     load_home_panel();
     $('#submitForm').submit(function(event){
-      /*var $form = $(this),
-      url = $form.find( "input[name='url']" ).val(),
-      reader_id = $form.find( "input[name='reader_id']" ).val(),
-      name = $form.find( "input[name='name']" ).val(),
-      description = $form.find( "input[name='description']" ).val(),
-      user_id = $form.find( "input[name='user_id']" ).val(),
-      $.post(reader_url, {url: url, reader_id: reader_id, name: name,
-        description: description, user_id: user_id}, function(data){
-          alert(JSON.stringify(data));
-        });*/
         console.log("HELLO");
         $.post( reader_url,$('#submitForm').serializeObject(),function(data){
             alert("HELLO");
