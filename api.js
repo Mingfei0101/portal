@@ -34,7 +34,7 @@ $(function() {
           alert(JSON.stringify(data));
         });*/
         console.log("HELLO");
-        $.post( reader_url,$('#form-container').serializeObject(),function(data){
+        $.post( reader_url,$('#submitForm').serializeObject(),function(data){
             alert("HELLO");
         })
       });
