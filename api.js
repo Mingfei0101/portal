@@ -222,4 +222,21 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-}
+};
+$.postJSON = function(url, data,method, callback,fail) {
+    if (typeof method === "undefined" || method === null) { 
+        method = "POST"; 
+    }
+    return jQuery.ajax({
+        'type': method,
+        'url': url,
+        'contentType': 'application/json',
+        'data': JSON.stringify(data),
+        'dataType': 'json',
+        'success': callback,
+        'error':fail,
+        'beforeSend':function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    });
+}; 
