@@ -38,7 +38,6 @@ $(function() {
     $('#readers-container').change(function(){
       select_change($('#readers-container').val());
       reader_change($('#readers-container').val());
-      $('#submitButton').click("submitForm");
     });
   });
 
