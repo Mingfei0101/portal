@@ -22,10 +22,6 @@ $(function() {
       }
     });
     load_home_panel();
-    $( "#sumbitForm" ).submit(function( event ) {
-      console.log( $( this ).serializeObject() );
-      event.preventDefault();
-    });
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
   });//End of Document Ready
