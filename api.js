@@ -22,6 +22,7 @@ $(function() {
       }
     });
     load_home_panel();
+    $('#submitButton').click("submitForm");
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
   });//End of Document Ready
@@ -47,7 +48,10 @@ $(function() {
 })
 */
 };
-
+function form_submit(formName){
+  data = $('#'+formName).serializeObject();
+  $.postJSON(data.url, data, "PUT");
+}
 function select_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
@@ -224,8 +228,8 @@ function getCookie(name) {
     return cookieValue;
 };
 $.postJSON = function(url, data,method, callback,fail) {
-    if (typeof method === "undefined" || method === null) { 
-        method = "POST"; 
+    if (typeof method === "undefined" || method === null) {
+        method = "POST";
     }
     return jQuery.ajax({
         'type': method,
@@ -239,4 +243,4 @@ $.postJSON = function(url, data,method, callback,fail) {
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
         }
     });
-}; 
+};

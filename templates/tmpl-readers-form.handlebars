@@ -1,5 +1,10 @@
 <form action="{{ url }}" name="myForm" method="PUT" id="submitForm" >
 
+        <div class="form-group" style="display:none">
+          <label class="control-label" for="url">URL</label>
+          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
+        </div>
+
         <div class="form-group">
           <label class="control-label" for="reader_id">Reader ID</label>
           <input type="text" class="form-control" name="reader_id" id="reader_id" value="{{ reader_id }}">
