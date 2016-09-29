@@ -1,15 +1,15 @@
 <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th data-column-id="tag">Tag</th>
-      <th data-column-id="tag-timestamp">Tag Timestamp</th>
+      <th data-column-id="tag">Latitude</th>
+      <th data-column-id="tag-timestamp">Longitude</th>
     </tr>
   </thead>
   <tbody id ="tagRow">
     {{#each results}}
     <tr>
-      <td>{{this.tag}}</td>
-      <td>{{this.tag_timestamp}}</td>
+      <td>{{this.latitude}}</td>
+      <td>{{this.longitude}}</td>
     </tr>
     {{/each}}
   </tbody>
