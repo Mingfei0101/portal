@@ -66,7 +66,7 @@ function select_change(reader){
 
 function reader_change(reader){
   $('#grid-basic').remove();
-  $.getJSON("http://head.ouetag.org/api/etag/tag_reads/.json?reader=" + reader + "&ordering=-tag_timestamp&page_size=10", function(data){
+  $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {
         results: data.results
