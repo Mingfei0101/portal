@@ -1,12 +1,12 @@
 <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
   <thead>
     <tr>
-      <th data-column-id="tag">Latitude</th>
-      <th data-column-id="tag-timestamp">Longitude</th>
+      <th data-column-id="latitude">Latitude</th>
+      <th data-column-id="longitude">Longitude</th>
     </tr>
   </thead>
-  <tbody id ="tagRow">
-    {{#each results}}
+  <tbody id ="locationRow">
+    {{#each results.reader}}
     <tr>
       <td>{{this.latitude}}</td>
       <td>{{this.longitude}}</td>
