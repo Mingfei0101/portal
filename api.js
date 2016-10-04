@@ -77,6 +77,10 @@ function reader_change(reader){
   })
 };
 
+function popup() {
+    alert("I am an alert box!");
+}
+
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
