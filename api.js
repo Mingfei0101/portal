@@ -65,7 +65,7 @@ function select_change(reader){
 };
 
 function reader_change(reader){
-  $('#grid-basic').remove();
+  $('#grid-container').remove();
   $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {

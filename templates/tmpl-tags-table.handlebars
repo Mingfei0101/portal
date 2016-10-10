@@ -1,17 +1,19 @@
-<table id="grid-basic" name="myTable" class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th data-column-id="latitude">Latitude</th>
-      <th data-column-id="longitude">Longitude</th>
-    </tr>
-  </thead>
-  <tbody id ="locationRow">
-    {{#each results}}
-    <tr>
-      <td>{{this.latitude}}</td>
-      <td>{{this.longitude}}</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
-<button onclick="popup()" button type="button" class="btn btn-secondary">Edit</button>
+<div class = "grid-container">
+  <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th data-column-id="latitude">Latitude</th>
+        <th data-column-id="longitude">Longitude</th>
+      </tr>
+    </thead>
+    <tbody id ="locationRow">
+      {{#each results}}
+      <tr>
+        <td>{{this.latitude}}</td>
+        <td>{{this.longitude}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <button onclick="popup()" button type="button" class="btn btn-secondary">Edit</button>
+</div>
