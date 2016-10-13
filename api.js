@@ -77,11 +77,11 @@ function reader_change(reader){
   })
 };
 
-function lat_long_change(reader) {
-  $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
-    lat_long_template = Handlebars.templates['tmpl-location-popup'];
-  }
-}
+//function lat_long_change(reader) {
+  //$.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
+    //lat_long_template = Handlebars.templates['tmpl-location-popup'];
+  //}
+//}
 
 function submit_user(){
     console.log(user_url)
