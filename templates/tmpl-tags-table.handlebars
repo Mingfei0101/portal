@@ -15,5 +15,12 @@
       {{/each}}
     </tbody>
   </table>
-  <button onclick="popup()" button type="button" class="btn btn-secondary">Edit</button>
+  <div data-role="main" class="ui-content">
+    <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all">Edit</a>
+
+    <div data-role="popup" id="myPopup" class="ui-content">
+      <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+      <p>BLAH</p>
+    </div>
+  </div>
 </div>
