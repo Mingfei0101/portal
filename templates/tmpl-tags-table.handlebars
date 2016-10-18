@@ -2,22 +2,26 @@
   <table id="grid-basic" name="myTable" class="table table-bordered table-striped">
     <thead>
       <tr>
+        <th data-column-id="start_time">Start Timestamp</th>
+        <th data-column-id="end_time">End Timestamp</th>
         <th data-column-id="latitude">Latitude</th>
         <th data-column-id="longitude">Longitude</th>
+        <th data-column-id="longitude">Edit</th>
       </tr>
     </thead>
     <tbody id ="locationRow">
       {{#each results}}
       <tr>
+        <td>{{this.start_timestamp}}</td>
+        <td>{{this.end_timestamp}}</td>
         <td>{{this.latitude}}</td>
         <td>{{this.longitude}}</td>
+        <td><button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal2" id="#myModal2">Edit</button></td>
       </tr>
       {{/each}}
     </tbody>
   </table>
-  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal2" id="#myModal2">
-    Edit
-  </button>
+
 
   <div class="modal fade" id="modal2" tabindex="-1" role="dialog">
     <div class="modal-dialog">
