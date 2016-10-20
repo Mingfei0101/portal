@@ -81,7 +81,7 @@ function lat_long_change(url) {
   $.getJSON(url, function(data){
     lat_long_template = Handlebars.templates['tmpl-location-popup'];
     $('#modal-lat-long').empty();
-    $('#model-lat-long').append(lat_long_template(data));
+    $('#modal-lat-long').append(lat_long_template(data));
     });
 }
 
