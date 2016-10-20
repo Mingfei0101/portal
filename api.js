@@ -80,9 +80,10 @@ function reader_change(reader){
 function lat_long_change(url) {
   $.getJSON(url, function(data){
     lat_long_template = Handlebars.templates['tmpl-location-popup'];
+    $('#modal2').modal("show");
+    console.log(JSON.stringify(data));
     $('#modal-lat-long').empty();
     $('#modal-lat-long').append(lat_long_template(data));
-    $('#modal2').modal("show");
     });
 }
 
