@@ -82,6 +82,7 @@ function lat_long_change(url) {
     lat_long_template = Handlebars.templates['tmpl-location-popup'];
     $('#modal-lat-long').empty();
     $('#modal-lat-long').append(lat_long_template(data));
+    $('#modal2').modal("show");
     });
 }
 
