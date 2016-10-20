@@ -77,8 +77,8 @@ function reader_change(reader){
   })
 };
 
-function lat_long_change(reader) {
-  $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
+function lat_long_change(url) {
+  $.getJSON(url, function(data){
     lat_long_template = Handlebars.templates['tmpl-location-popup'];
     $('#modal-lat-long').empty();
     $('#model-lat-long').append(lat_long_template(data));
