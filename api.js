@@ -50,6 +50,9 @@ $(function() {
       readers: data.results
     };
     $('#tags').append(tags_template(context));
+    $('#tags-container').change(function(){
+      tags_form($('#tags-container').val());
+    });
   });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
@@ -75,7 +78,16 @@ function select_change(reader){
 		//});
 	});
 };
-
+function tags_form(tags){
+	$.getJSON("http://head.ouetag.org/api/etag/tags/" + tags + "/.json" , function(data){
+                tags_form_template = Handlebars.templates['tmpl-tags-form'];
+                $('#tags-form').empty();
+                $('#tags-form').append(tags_form_template(data));
+		//$.each(data, function(key, value){
+	        //    $('[name='+key+']').val(value);
+		//});
+	});
+};
 function reader_change(reader){
   $('#grid-container').remove();
   $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
