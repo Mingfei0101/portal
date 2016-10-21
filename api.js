@@ -43,6 +43,14 @@ $(function() {
     $('select option:first-child').attr("selected", "selected");
   });
 
+  $('#tags').empty();
+  $.getJSON("http://head.ouetag.org/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+    tags_template = Handlebars.templates['tmpl-tags'];
+    var context = {
+      readers: data.results
+    };
+    $('#tags').append(tags_template(context));
+
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
 
   /*$('#home').change(function(){
@@ -52,13 +60,7 @@ $(function() {
 };
 
 function load_tag_panel(){
-$('#tags').empty();
-$.getJSON("http://head.ouetag.org/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
-  tags_template = Handlebars.templates['tmpl-tags'];
-  var context = {
-    readers: data.results
-  };
-  $('#tags').append(tags_template(context));
+
   //$('#readers-container').change(function(){
     //select_change($('#readers-container').val());
     //reader_change($('#readers-container').val());
