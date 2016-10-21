@@ -41,6 +41,7 @@ $(function() {
     });
     //code to select first item in the select box
     $('select option:first-child').attr("selected", "selected");
+    $('#readers-container').val(0);
   });
 
   $('#tags').empty();
