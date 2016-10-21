@@ -39,6 +39,8 @@ $(function() {
       select_change($('#readers-container').val());
       reader_change($('#readers-container').val());
     });
+    //code to select first item in the select box
+    $('select option:first-child').attr("selected", "selected");
   });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
