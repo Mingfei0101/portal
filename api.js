@@ -50,7 +50,7 @@ $(function() {
       readers: data.results
     };
     $('#tags').append(tags_template(context));
-    });
+  });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
 
@@ -58,17 +58,6 @@ $(function() {
   reader_change($('#readers-container').val());
 })
 */
-};
-
-function load_tag_panel(){
-
-  //$('#readers-container').change(function(){
-    //select_change($('#readers-container').val());
-    //reader_change($('#readers-container').val());
-  //});
-  //code to select first item in the select box
-  $('select option:first-child').attr("selected", "selected");
-
 };
 
 function form_submit(formName){
