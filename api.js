@@ -53,6 +53,7 @@ $(function() {
     $('#tags').append(tags_template(context));
     $('#tags-container').change(function(){
       tags_form($('#tags-container').val());
+      tags_change($('#tags-container').val());
     });
   });
 
@@ -112,7 +113,7 @@ function lat_long_change(url) {
     });
 };
 
-function tag_change(tags){
+function tags_change(tags){
   $('#tag-container').remove();
   $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
