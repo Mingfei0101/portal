@@ -114,7 +114,7 @@ function lat_long_change(url) {
 
 function tag_change(tags){
   $('#tag-container').remove();
-  $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tags=" + tags, function(data){
+  $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {
         results: data.results
