@@ -92,12 +92,12 @@ function tags_form(tags){
 function reader_change(reader){
   $('#grid-container').remove();
   $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
-    tags_table_template = Handlebars.templates['tmpl-tags-table'];
+    readers_table_template = Handlebars.templates['tmpl-readers-table'];
     var context = {
         results: data.results
     };
-    $('#tags-Table').empty();
-    $('#tags-table').append(tags_table_template(context));
+    $('#readers-table').empty();
+    $('#readers-table').append(readers_table_template(context));
     //$('#grid-basic').append(dataTable);
   })
 };
@@ -110,7 +110,30 @@ function lat_long_change(url) {
     $('#modal-lat-long').empty();
     $('#modal-lat-long').append(lat_long_template(data));
     });
-}
+};
+
+function tag_change(reader){
+  $('#grid-container').remove();
+  $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tags=" + tags, function(data){
+    tags_table_template = Handlebars.templates['tmpl-tags-table'];
+    var context = {
+        results: data.results
+    };
+    $('#tags-table').empty();
+    $('#tags-table').append(tags_table_template(context));
+    //$('#grid-basic').append(dataTable);
+  })
+};
+
+function tag_animal_change(url) {
+  $.getJSON(url, function(data){
+    tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
+    //$('#modal2').modal("show");
+    //console.log(JSON.stringify(data));
+    $('#modal-tag-animal').empty();
+    $('#modal-tag-animal').append(tag_animal_template(data));
+    });
+};
 
 function submit_user(){
     console.log(user_url)
