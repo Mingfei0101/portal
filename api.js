@@ -77,6 +77,18 @@ function form_submit_tag(formName){
   return false;
 }
 
+function form_submit_modal(formName){
+  data = $('#'+formName).serializeObject();
+  $.postJSON(data.url, data, "PUT");
+  return false;
+}
+
+function form_submit_tag_modal(formName){
+  data = $('#'+formName).serializeObject();
+  $.postJSON(data.url, data, "PUT");
+  return false;
+}
+
 function select_change(reader){
 	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
