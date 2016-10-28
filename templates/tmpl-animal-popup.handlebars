@@ -1,5 +1,10 @@
 <form id="submitForm" onclick = "form_submit_modal_tag('submitForm'); return false;">
 
+        <div class="form-group" style="display:none">
+          <label class="control-label" for="url">URL</label>
+          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
+        </div>
+
         <div class="form-group">
           <label class="control-label" for="name">Name</label>
           <input type="text" class="form-control" name="name" id="name" value="{{ name }}">
