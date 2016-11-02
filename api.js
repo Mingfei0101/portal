@@ -35,13 +35,14 @@ $(function() {
       readers: data.results
     };
     $('#home').append(reader_template(context));
+    $('select option:first-child').attr("selected", "selected");
+    $('#readers-container').val(0);
     $('#readers-container').change(function(){
       select_change($('#readers-container').val());
       reader_change($('#readers-container').val());
     });
     //code to select first item in the select box
-    $('select option:first-child').attr("selected", "selected");
-    $('#readers-container').val(0);
+
   });
 
   $('#tags').empty();
