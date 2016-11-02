@@ -41,7 +41,6 @@ $(function() {
     });
     //code to select first item in the select box
     $('select option:first-child').attr("selected", "selected").change();
-    //$('#readers-container').val(0).change();
   });
 
   $('#tags').empty();
@@ -55,6 +54,7 @@ $(function() {
       tags_form($('#tags-container').val());
       tags_change($('#tags-container').val());
     });
+    $('select option:first-child').attr("selected", "selected").change();
   });
 
   //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
