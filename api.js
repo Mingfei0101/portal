@@ -137,14 +137,14 @@ function tag_animal_change(url) {
     });
 };
 
-function tag_animal_add(tags) {
-  $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
+function tag_animal_add() {
+  //$.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
     tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-animal').empty();
-    $('#modal-animal').append(tag_animal_template(data));
-    });
+    $('#modal-animal').append(tag_animal_template());
+    //});
 };
 
 function submit_user(){
