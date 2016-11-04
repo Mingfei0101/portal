@@ -67,6 +67,7 @@ $(function() {
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
+  console.log(data);
   $.postJSON(data.url, data, "PUT");
   return false;
 };
