@@ -143,7 +143,7 @@ function tag_animal_add(tags) {
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-animal').empty();
-    $('#modal-animal').append(tag_animal_template());
+    $('#modal-animal').append(tag_animal_template(data));
     });
 };
 
