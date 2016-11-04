@@ -68,6 +68,8 @@ $(function() {
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
   console.log(data);
+  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
+  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
   $.postJSON(data.url, data, "PUT");
   return false;
 };
