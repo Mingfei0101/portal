@@ -147,6 +147,16 @@ function tag_animal_add() {
     //});
 };
 
+function reader_add() {
+  //$.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
+    location_template = Handlebars.templates['tmpl-location-popup'];
+    //$('#modal2').modal("show");
+    //console.log(JSON.stringify(data));
+    $('#modal-location').empty();
+    $('#modal-location').append(location_template());
+    //});
+};
+
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
