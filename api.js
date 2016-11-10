@@ -29,7 +29,7 @@ $(function() {
 
   function load_home_panel(){
   $('#home').empty();
-  $.getJSON("http://head.ouetag.org/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
+  $.getJSON("/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
       readers: data.results
@@ -44,7 +44,7 @@ $(function() {
   });
 
   $('#tags').empty();
-  $.getJSON("http://head.ouetag.org/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
     var context = {
       readers: data.results
@@ -75,7 +75,7 @@ function form_submit(formName){
 };
 
 function select_change(reader){
-	$.getJSON("http://head.ouetag.org/api/etag/readers/" + reader + "/.json" , function(data){
+	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
                 $('#readers-form').empty();
                 $('#readers-form').append(reader_form_template(data));
@@ -85,7 +85,7 @@ function select_change(reader){
 	});
 };
 function tags_form(tags){
-	$.getJSON("http://head.ouetag.org/api/etag/tags/" + tags + "/.json" , function(data){
+	$.getJSON("/api/etag/tags/" + tags + "/.json" , function(data){
                 tags_form_template = Handlebars.templates['tmpl-tags-form'];
                 $('#tags-form').empty();
                 $('#tags-form').append(tags_form_template(data));
@@ -96,7 +96,7 @@ function tags_form(tags){
 };
 function reader_change(reader){
   $('#grid-container').remove();
-  $.getJSON("http://head.ouetag.org/api/etag/reader_location/.json?reader=" + reader, function(data){
+  $.getJSON("/api/etag/reader_location/.json?reader=" + reader, function(data){
     readers_table_template = Handlebars.templates['tmpl-readers-table'];
     var context = {
         results: data.results
@@ -119,7 +119,7 @@ function lat_long_change(url) {
 
 function tags_change(tags){
   $('#tag-container').remove();
-  $.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
+  $.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {
         results: data.results
@@ -141,7 +141,7 @@ function tag_animal_change(url) {
 };
 
 function tag_animal_add() {
-  //$.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
+  //$.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
     tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
@@ -151,7 +151,7 @@ function tag_animal_add() {
 };
 
 function reader_add() {
-  //$.getJSON("http://head.ouetag.org/api/etag/tag_animal/.json?tag=" + tags, function(data){
+  //$.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
     location_template = Handlebars.templates['tmpl-location-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
