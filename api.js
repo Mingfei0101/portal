@@ -74,15 +74,6 @@ function form_submit(formName){
   return false;
 };
 
-function form_add(formName){
-  data = $('#'+formName).serializeObject();
-  console.log(data);
-  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
-  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
-  $.postJSON("/api/etag/reader_location/.json", data, "PUT");
-  return false;
-};
-
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
@@ -169,19 +160,6 @@ function reader_add() {
     //});
 };
 
-function checkbox(){
-  $('#id').change(function(){
-
-    if($(this).attr('checked')){
-      $(this).val('TRUE');
-    }else{
-      $(this).val('FALSE');
-    }
-
-    alert($(this).val());
-
-  });
-};
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
