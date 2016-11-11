@@ -160,6 +160,11 @@ function reader_add() {
     //});
 };
 
+$('#id').change(function(){
+     cb = $(this);
+     cb.val(cb.prop('checked'));
+ });
+
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
