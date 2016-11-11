@@ -161,10 +161,16 @@ function reader_add() {
 };
 
 $('#id').change(function(){
-     cb = $(this);
-     cb.val(cb.prop('checked'));
- });
 
+    if($(this).attr('checked')){
+          $(this).val('TRUE');
+     }else{
+          $(this).val('FALSE');
+     }
+
+    alert($(this).val());
+
+});
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
