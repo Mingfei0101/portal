@@ -160,17 +160,19 @@ function reader_add() {
     //});
 };
 
-$('#id').change(function(){
+function checkbox(){
+  $('#id').change(function(){
 
     if($(this).attr('checked')){
-          $(this).val('TRUE');
-     }else{
-          $(this).val('FALSE');
-     }
+      $(this).val('TRUE');
+    }else{
+      $(this).val('FALSE');
+    }
 
     alert($(this).val());
 
-});
+  });
+};
 function submit_user(){
     console.log(user_url)
     $.post( user_url,$('#user_form').serializeObject(),function(data){
