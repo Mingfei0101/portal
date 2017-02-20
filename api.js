@@ -42,7 +42,7 @@ $(function() {
     //code to select first item in the select box
     $('select option:first-child').attr("selected", "selected").change();
   });
-
+//tags start
   $('#tags').empty();
   $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
@@ -55,15 +55,46 @@ $(function() {
       tags_change($('#tags-container').val());
     });
     $('select option:first-child').attr("selected", "selected").change();
+  }); // tags implementation ends here---------------------------------------
+//################################################################################
+//file upload functions begins here
+$('#file_upload').empty();
+  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+    file_template = Handlebars.templates['tmpl-file'];
+    var context = {
+      readers: data.results
+    };
+    $('#file_upload').append(file_template(context));
+    $('#file-container').change(function(){
+      file_form($('#file-container').val());
+      file_change($('#file-container').val());
+    });
+    $('select option:first-child').attr("selected", "selected").change();
   });
+ 
+//file upload function ends here....  
 
-  //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
+//###################################Custom Starts###############################
 
-  /*$('#home').change(function(){
-  reader_change($('#readers-container').val());
-})
+/* $('#custom').empty();
+  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+    file_template = Handlebars.templates['tmpl-file'];
+    var context = {
+      readers: data.results
+    };
+    $('#file_upload').append(file_template(context));
+    $('#file-container').change(function(){
+      file_form($('#file-container').val());
+      file_change($('#file-container').val());
+    });
+    $('select option:first-child').attr("selected", "selected").change();
+  });
 */
-};
+//####################################Custom Ends################################
+
+};//load_home_panel() function ends here....
+
+
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
@@ -73,6 +104,7 @@ function form_submit(formName){
   $.postJSON(data.url, data, "PUT");
   return false;
 };
+
 
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
@@ -94,6 +126,59 @@ function tags_form(tags){
 		//});
 	});
 };
+//-----------------------------
+function file_form(file_upload){
+	
+	$.getJSON("/api/etag/tags/" + file_upload + "/.json" , function(data){
+                console.log(data)
+                var f1 = Handlebars.templates['tmpl-file-form'];
+                $('#file-form').empty();
+                $('#file-form').append(f1(data));
+                //$('#submit_file_button').click(function(){file_upld();
+					//return false;
+					//});
+		//$.each(data, function(key, value){
+	        //    $('[name='+key+']').val(value);
+		//});
+	});
+};
+
+//-----------------------------
+
+//------------------------------------------
+
+function file_upld(formName){
+	//console.log('#'+formName);
+	var form = document.getElementById('submit_file');
+	
+	var form_data = $('#'+formName).serialize();
+	console.log('hello');
+	console.log(form);
+	console.log(data);
+	
+		$.ajax({
+        url:'/api/etag/file-upload/',
+        type:'post',
+        //async:false,
+        cache: false,
+        dataType: 'json',
+        data:form_data,
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        success:function(response){
+            alert(response);
+        },
+        error: function(){
+			alert("error in submission");
+			}
+        
+    } 
+    );
+	
+	return false;
+		};
+//------------------------------------------
 function reader_change(reader){
   $('#grid-container').remove();
   $.getJSON("/api/etag/reader_location/.json?reader=" + reader, function(data){
@@ -130,6 +215,20 @@ function tags_change(tags){
   })
 };
 
+//--------------------------------------------------------------
+function file_change(file_upload){
+  //$('#file-container').remove();
+  $.getJSON("/api/etag/tag_animal/.json?tag=" + file_upload, function(data){
+    var filetabletemplate = Handlebars.templates['tmpl-file-table'];
+    var context = {
+        results: data.results
+    };
+    $('#file-table').empty();
+    $('#file-table').append(filetabletemplate(context));
+    //$('#grid-basic').append(dataTable);
+  })
+};
+//---------------------------------------------------------------
 function tag_animal_change(url) {
   $.getJSON(url, function(data){
     tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
