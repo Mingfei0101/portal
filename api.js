@@ -2,6 +2,7 @@ $(function() {
     //Customize by setting base_url to cybercom/api docker application
     base_url = "/api";
     //No other alterations is need to get the standard applicaiton running!
+    //console.log('The option with value ');
     login_url = base_url + "/api-auth/login/?next=";
     logout_url = base_url + "/api-auth/logout/?next=";
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
@@ -28,8 +29,15 @@ $(function() {
   });//End of Document Ready
 
   function load_home_panel(){
+  $('#description').empty();  
+  //console.log('The option with value ');	  
+  desc_template = Handlebars.templates['tmpl-desc'];
+  $('#description').append(desc_template);
   $('#home').empty();
   $.getJSON("/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
+    $('#home').change(function() {
+	//alert('The option with value ');
+	});
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
       readers: data.results
@@ -130,10 +138,13 @@ function tags_form(tags){
 function file_form(file_upload){
 	
 	$.getJSON("/api/etag/tags/" + file_upload + "/.json" , function(data){
-                console.log(data)
+               // console.log(data)
                 var f1 = Handlebars.templates['tmpl-file-form'];
                 $('#file-form').empty();
                 $('#file-form').append(f1(data));
+                $('#submit_file_button').click(function(){
+					file_upld('submit_file');
+					});
                 //$('#submit_file_button').click(function(){file_upld();
 					//return false;
 					//});
@@ -148,15 +159,15 @@ function file_form(file_upload){
 //------------------------------------------
 
 function file_upld(formName){
-	//console.log('#'+formName);
+	console.log('#'+formName);
 	var form = document.getElementById('submit_file');
 	
-	var form_data = $('#'+formName).serialize();
+	var form_data = $('#'+formName).serializeObject();
 	console.log('hello');
 	console.log(form);
-	console.log(data);
+	console.log(form_data);
 	
-		$.ajax({
+		/*$.ajax({
         url:'/api/etag/file-upload/',
         type:'post',
         //async:false,
@@ -173,8 +184,7 @@ function file_upld(formName){
 			alert("error in submission");
 			}
         
-    } 
-    );
+    }); */
 	
 	return false;
 		};
