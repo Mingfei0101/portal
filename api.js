@@ -112,8 +112,22 @@ function form_submit(formName){
   $.postJSON(data.url, data, "PUT");
   return false;
 };
-
-
+//-----------------------------------------------------------------------------------
+function form_submit_insert(formName){
+  data = $('#'+formName).serializeObject();
+  console.log('called again');
+  url1='http://0.0.0.0/api/etag/reader_location/';
+  console.log(data);
+  //data = data.serializeObject();
+  console.log('called again');
+  //console.log(data.url);
+  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
+  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
+  
+  $.postJSON(url1, data, "POST");
+  return false;
+};
+//=============================================================================================
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
@@ -265,7 +279,8 @@ function reader_add() {
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-location').empty();
-    $('#modal-location').append(location_template());
+    $('#modal-location
+    ').append(location_template());
     //});
 };
 
