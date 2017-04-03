@@ -2,7 +2,6 @@ $(function() {
     //Customize by setting base_url to cybercom/api docker application
     base_url = "/api";
     //No other alterations is need to get the standard applicaiton running!
-    //console.log('The option with value ');
     login_url = base_url + "/api-auth/login/?next=";
     logout_url = base_url + "/api-auth/logout/?next=";
     user_task_url = base_url + "/queue/usertasks/.json?page_size=10";
@@ -29,15 +28,8 @@ $(function() {
   });//End of Document Ready
 
   function load_home_panel(){
-  $('#description').empty();  
-  //console.log('The option with value ');	  
-  desc_template = Handlebars.templates['tmpl-desc'];
-  $('#description').append(desc_template);
   $('#home').empty();
   $.getJSON("/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
-    $('#home').change(function() {
-	//alert('The option with value ');
-	});
     reader_template = Handlebars.templates['tmpl-readers'];
     var context = {
       readers: data.results
@@ -50,7 +42,7 @@ $(function() {
     //code to select first item in the select box
     $('select option:first-child').attr("selected", "selected").change();
   });
-//tags start
+
   $('#tags').empty();
   $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
@@ -63,7 +55,7 @@ $(function() {
       tags_change($('#tags-container').val());
     });
     $('select option:first-child').attr("selected", "selected").change();
-  }); // tags implementation ends here---------------------------------------
+  });
 //################################################################################
 //file upload functions begins here
 $('#file_upload').empty();
@@ -77,32 +69,12 @@ $('#file_upload').empty();
       file_form($('#file-container').val());
       file_change($('#file-container').val());
     });
-    $('select option:first-child').attr("selected", "selected").change();
+   // $('select option:first-child').attr("selected", "selected").change();
   });
  
 //file upload function ends here....  
-
-//###################################Custom Starts###############################
-
-/* $('#custom').empty();
-  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
-    file_template = Handlebars.templates['tmpl-file'];
-    var context = {
-      readers: data.results
-    };
-    $('#file_upload').append(file_template(context));
-    $('#file-container').change(function(){
-      file_form($('#file-container').val());
-      file_change($('#file-container').val());
-    });
-    $('select option:first-child').attr("selected", "selected").change();
-  });
-*/
-//####################################Custom Ends################################
-
+  
 };//load_home_panel() function ends here....
-
-
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
@@ -112,6 +84,7 @@ function form_submit(formName){
   $.postJSON(data.url, data, "PUT");
   return false;
 };
+
 //-----------------------------------------------------------------------------------
 function form_submit_insert(formName){
   data = $('#'+formName).serializeObject();
@@ -128,6 +101,7 @@ function form_submit_insert(formName){
   return false;
 };
 //=============================================================================================
+
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
@@ -148,6 +122,7 @@ function tags_form(tags){
 		//});
 	});
 };
+
 //-----------------------------
 function file_form(file_upload){
 	
@@ -168,9 +143,6 @@ function file_form(file_upload){
 	});
 };
 
-//-----------------------------
-
-//------------------------------------------
 
 function file_upld(formName){
 	console.log('#'+formName);
@@ -203,6 +175,7 @@ function file_upld(formName){
 	return false;
 		};
 //------------------------------------------
+
 function reader_change(reader){
   $('#grid-container').remove();
   $.getJSON("/api/etag/reader_location/.json?reader=" + reader, function(data){
@@ -253,6 +226,7 @@ function file_change(file_upload){
   })
 };
 //---------------------------------------------------------------
+
 function tag_animal_change(url) {
   $.getJSON(url, function(data){
     tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
@@ -279,8 +253,7 @@ function reader_add() {
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-location').empty();
-    $('#modal-location
-    ').append(location_template());
+    $('#modal-location').append(location_template());
     //});
 };
 

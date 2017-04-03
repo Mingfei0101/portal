@@ -1,11 +1,11 @@
-<form id="submit_location" onsubmit = "form_submit_insert('submit_location'); return false;" method="post">
+<form id="submit_location" onclick = "form_submit('submit_location'); return false;">
 
         <div class="form-group" style="display:none">
           <label class="control-label" for="url">URL</label>
           <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
           <label class="control-label" for="reader">Reader</label>
           <input type="text" class="form-control" name="reader" id="reader" value="{{ reader }}">
         </div>
@@ -38,7 +38,7 @@
 
         <div class="form-group">
           <div class="sumbit">
-            <button class="btn btn-primary" id="submitButton" value="POST">Submit</button>
+            <button class="btn btn-primary" id="submitButton" value="PUT">Submit</button>
           </div>
         </div>
 </form>
