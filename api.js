@@ -56,14 +56,25 @@ $(function() {
     });
     $('select option:first-child').attr("selected", "selected").change();
   });
-
-  //$('#readers-container').change(function(){select_change($('#readers-container').val()); });
-
-  /*$('#home').change(function(){
-  reader_change($('#readers-container').val());
-})
-*/
-};
+//################################################################################
+//file upload functions begins here
+$('#file_upload').empty();
+  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+    file_template = Handlebars.templates['tmpl-file'];
+    var context = {
+      readers: data.results
+    };
+    $('#file_upload').append(file_template(context));
+    $('#file-container').change(function(){
+      file_form($('#file-container').val());
+      file_change($('#file-container').val());
+    });
+   // $('select option:first-child').attr("selected", "selected").change();
+  });
+ 
+//file upload function ends here....  
+  
+};//load_home_panel() function ends here....
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
@@ -73,6 +84,23 @@ function form_submit(formName){
   $.postJSON(data.url, data, "PUT");
   return false;
 };
+
+//-----------------------------------------------------------------------------------
+function form_submit_insert(formName){
+  data = $('#'+formName).serializeObject();
+  console.log('called again');
+  url1='http://0.0.0.0/api/etag/reader_location/';
+  console.log(data);
+  //data = data.serializeObject();
+  console.log('called again');
+  //console.log(data.url);
+  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
+  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
+  
+  $.postJSON(url1, data, "POST");
+  return false;
+};
+//=============================================================================================
 
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
@@ -94,6 +122,60 @@ function tags_form(tags){
 		//});
 	});
 };
+
+//-----------------------------
+function file_form(file_upload){
+	
+	$.getJSON("/api/etag/tags/" + file_upload + "/.json" , function(data){
+               // console.log(data)
+                var f1 = Handlebars.templates['tmpl-file-form'];
+                $('#file-form').empty();
+                $('#file-form').append(f1(data));
+                $('#submit_file_button').click(function(){
+					file_upld('submit_file');
+					});
+                //$('#submit_file_button').click(function(){file_upld();
+					//return false;
+					//});
+		//$.each(data, function(key, value){
+	        //    $('[name='+key+']').val(value);
+		//});
+	});
+};
+
+
+function file_upld(formName){
+	console.log('#'+formName);
+	var form = document.getElementById('submit_file');
+	
+	var form_data = $('#'+formName).serializeObject();
+	console.log('hello');
+	console.log(form);
+	console.log(form_data);
+	
+		/*$.ajax({
+        url:'/api/etag/file-upload/',
+        type:'post',
+        //async:false,
+        cache: false,
+        dataType: 'json',
+        data:form_data,
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false,
+        success:function(response){
+            alert(response);
+        },
+        error: function(){
+			alert("error in submission");
+			}
+        
+    }); */
+	
+	return false;
+		};
+//------------------------------------------
+
 function reader_change(reader){
   $('#grid-container').remove();
   $.getJSON("/api/etag/reader_location/.json?reader=" + reader, function(data){
@@ -129,6 +211,21 @@ function tags_change(tags){
     //$('#grid-basic').append(dataTable);
   })
 };
+
+//--------------------------------------------------------------
+function file_change(file_upload){
+  //$('#file-container').remove();
+  $.getJSON("/api/etag/tag_animal/.json?tag=" + file_upload, function(data){
+    var filetabletemplate = Handlebars.templates['tmpl-file-table'];
+    var context = {
+        results: data.results
+    };
+    $('#file-table').empty();
+    $('#file-table').append(filetabletemplate(context));
+    //$('#grid-basic').append(dataTable);
+  })
+};
+//---------------------------------------------------------------
 
 function tag_animal_change(url) {
   $.getJSON(url, function(data){
