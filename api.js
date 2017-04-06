@@ -86,6 +86,15 @@ function form_submit(formName){
 };
 
 //-----------------------------------------------------------------------------------
+function form_post(formName){
+  data = $('#'+formName).serializeObject();
+  console.log(data);
+  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
+  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
+  $.postJSON(data.url, data, "POST");
+  return false;
+};
+//-----------------------------------------------------------------------------------
 function form_submit_insert(formName){
   data = $('#'+formName).serializeObject();
   console.log('called again');
@@ -249,7 +258,7 @@ function tag_animal_add() {
 
 function reader_add() {
   //$.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
-    location_template = Handlebars.templates['tmpl-location-popup'];
+    location_template = Handlebars.templates['tmpl-new-location-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-location').empty();
