@@ -111,6 +111,24 @@ function form_submit_insert(formName){
 };
 //=============================================================================================
 
+
+//-----------------------------------------------------------------------------------
+function form_submit_insert1(formName){
+  data = $('#'+formName).serializeObject();
+  console.log('called again');
+  url1='http://0.0.0.0/api/etag/tag_animal/';
+  console.log(data);
+  //data = data.serializeObject();
+  console.log('called again');
+  //console.log(data.url);
+  if("latitude" in data){data.latitude=parseFloat(data.latitude)}
+  if("longitude" in data){data.longitude=parseFloat(data.longitude)}
+  
+  $.postJSON(url1, data, "POST");
+  return false;
+};
+//=============================================================================================
+
 function select_change(reader){
 	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
@@ -248,7 +266,7 @@ function tag_animal_change(url) {
 
 function tag_animal_add() {
   //$.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
-    tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
+    tag_animal_template = Handlebars.templates['tmpl-new-animal-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
     $('#modal-animal').empty();
