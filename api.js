@@ -81,6 +81,7 @@ function form_submit(formName){
   console.log(data);
   if("latitude" in data){data.latitude=parseFloat(data.latitude)}
   if("longitude" in data){data.longitude=parseFloat(data.longitude)}
+  if("field_data" in data){data.field_data=JSON.parse(data.field_data)}    
   $.postJSON(data.url, data, "PUT");
   return false;
 };
@@ -258,7 +259,9 @@ function tag_animal_change(url) {
   $.getJSON(url, function(data){
     tag_animal_template = Handlebars.templates['tmpl-animal-popup'];
     //$('#modal2').modal("show");
-    //console.log(JSON.stringify(data));
+    //data=JSON.stringify(data);
+    data.field_data = JSON.stringify(data.field_data,null,4);
+      console.log(JSON.stringify(data));
     $('#modal-tag-animal').empty();
     $('#modal-tag-animal').append(tag_animal_template(data));
     });
