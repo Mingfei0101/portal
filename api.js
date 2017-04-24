@@ -71,7 +71,7 @@ $('#file_upload').empty();
       file_form($('#file-container').val());
       file_change($('#file-container').val());
     });
-   // $('select option:first-child').attr("selected", "selected").change();
+   $('select option:first-child').attr("selected", "selected").change();
   });
  
 //file upload function ends here....  
@@ -93,6 +93,11 @@ function hide_tab(){
 function show_tab(){
         console.log('hello3');
         $('#tabContent1').show();
+        $('[href="#tasks"]').tab('show');
+        console.log('hello3_again');
+        $('[href="#edit"]').tab('show');
+        $('#tasks').hide();
+        $('#edit').show();
     }  
          
  function show_edit(){
@@ -104,6 +109,11 @@ function hide_edit(){
         $('#edit').hide();
     }  
       
+function hide_edit1(){
+        console.log('hello7');
+        $('#edit').hide();
+        $('#tasks').show();
+    } 
         
 
 function form_submit(formName){
