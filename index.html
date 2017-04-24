@@ -1,4 +1,3 @@
-
 <html>
 <head lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,10 +39,10 @@
 </nav>
 <div role="tabpanel" class="tabbable" >
     <ul id='myTab' class="nav nav-tabs  " role="tablist">
-        <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a></li>
+        <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab" onclick="hide_tab();">Description</a></li>
         
-        <li role="presentation"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab">Visualization</a></li>
-        <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab">Custom</a></li>  
+        <li role="presentation"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab" onclick="hide_tab();">Visualization</a></li>
+        <li role="presentation"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" onclick="show_tab();">Custom</a></li>  
     <!--    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Readers</a></li>
         <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li>
         <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Data Upload</a></li>
@@ -69,9 +68,9 @@
         </div>
         <div role="tabpanel" class="tab-pane fade" id="custom">
             <ul id='myTab1' class="nav nav-tabs  " role="tablist">	
-			<li role="presentation" class="tab-pane active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab">Edit</a></li>
-            <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab">Task History</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">User Profile</a></li>
+			<li role="presentation" class="tab-pane active"><a href="#edit" aria-controls="edit" role="tab" data-toggle="tab" onclick="show_edit();">Edit</a></li>
+            <li role="presentation"><a href="#tasks" aria-controls="tasks" role="tab" data-toggle="tab" onclick="hide_edit();">Task History</a></li>
+            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" onclick="hide_edit();">User Profile</a></li>
 		</ul>
         </div>
          <div id="tabContent1" class="tab-content" style="margin-bottom:0px">
@@ -125,10 +124,8 @@
 
 			</div>
        <!-- <div role="tabpanel" class="tab-pane fade" id="home">
-
         </div>
         <div role="tabpanel" class="tab-pane fade" id="tags">
-
         </div>   -->
         <div role="tabpanel" class="tab-pane fade" id="tasks">
             <h2>Task History</h2>

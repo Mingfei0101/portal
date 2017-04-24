@@ -42,7 +42,9 @@ $(function() {
     //code to select first item in the select box
     $('select option:first-child').attr("selected", "selected").change();
   });
-
+//##########################################################################
+      $('#viz').empty();
+    //####################################################################  
   $('#tags').empty();
   $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
@@ -73,8 +75,36 @@ $('#file_upload').empty();
   });
  
 //file upload function ends here....  
+      $('#description').ready(function(){
+      console.log('hello');
+      $('#tabContent1').hide();
+      console.log('hello11');
+  }); 
+      
   
-};//load_home_panel() function ends here....
+};
+//load_home_panel() function ends here....
+
+function hide_tab(){
+        console.log('hello2');
+        $('#tabContent1').hide();
+    }  
+
+function show_tab(){
+        console.log('hello3');
+        $('#tabContent1').show();
+    }  
+         
+ function show_edit(){
+        console.log('hello4');
+        $('#edit').show();
+    }   
+function hide_edit(){
+        console.log('hello5');
+        $('#edit').hide();
+    }  
+      
+        
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
