@@ -8,7 +8,7 @@ $(function() {
     user_url = base_url + "/user/?format=json";
     reader_url = base_url + "/etag/readers/.json?page_size=20";
     prevlink=null;nextlink=null;
-    set_auth(base_url,login_url);
+    //set_auth(base_url,login_url);
     $("#aprofile").click(function(){activaTab('profile')})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
     load_task_history(user_task_url);
@@ -91,6 +91,8 @@ function hide_tab(){
     }  
 
 function show_tab(){
+        console.log('working');
+        set_auth(base_url,login_url);
         console.log('hello3');
         $('#tabContent1').show();
         $('[href="#tasks"]').tab('show');
@@ -114,6 +116,7 @@ function hide_edit1(){
         $('#edit').hide();
         $('#tasks').show();
     } 
+
         
 
 function form_submit(formName){
@@ -367,7 +370,7 @@ function set_password(){
     return false;
 }
 function set_auth(base_url,login_url){
-    $.getJSON( base_url + "/user/.json",function(data){
+    $.getJSON( base_url + "/user/?format=json",function(data){
         $('#user').html(data['username'].concat( ' <span class="caret"></span> '));
         $("#user").append($('<img style="border-radius:80px;">').attr("src",data['gravator_url'] + "?s=40&d=mm") );
         data.csrftoken = getCookie('csrftoken')
