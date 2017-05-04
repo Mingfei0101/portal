@@ -34,6 +34,7 @@ $(function() {
     var context = {
       readers: data.results
     };
+    console.log('---->>>');  
     $('#home').append(reader_template(context));
     $('#readers-container').change(function(){
       select_change($('#readers-container').val());
@@ -315,18 +316,24 @@ function tag_animal_add() {
     tag_animal_template = Handlebars.templates['tmpl-new-animal-popup'];
     //$('#modal2').modal("show");
     //console.log(JSON.stringify(data));
+    var tag_id=$('#tags-container').find(":selected").text();
+    var data=({tag:tag_id});
     $('#modal-animal').empty();
-    $('#modal-animal').append(tag_animal_template());
+    $('#modal-animal').append(tag_animal_template(data));
     //});
 };
 
 function reader_add() {
   //$.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
     location_template = Handlebars.templates['tmpl-new-location-popup'];
+    //console.log($('#readers-container').find(":selected").text());
+    var reader_id=$('#readers-container').find(":selected").text();
+    var data=({reader:reader_id});
     //$('#modal2').modal("show");
-    //console.log(JSON.stringify(data));
+    console.log('---->>>');
+    console.log(data);
     $('#modal-location').empty();
-    $('#modal-location').append(location_template());
+    $('#modal-location').append(location_template(data));
     //});
 };
 
