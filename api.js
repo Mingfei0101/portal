@@ -96,7 +96,7 @@ function load_home_panel(){
       reader_change($('#readers-container').val());
      });
      //code to select first item in the select box
-     $('select option:first-child').attr("selected", "selected").change();
+     $('select mption:first-child').attr("selected", "selected").change();
     });
     //##########################################################################
       $('#viz').empty();
@@ -260,7 +260,7 @@ function tags_form(tags){
 //-----------------------------
 function file_form(file_upload){
 	
-	$.getJSON(base_url + "/etag/tags/" + file_upload + "/.json" , function(data){
+	$.getJSON(base_url + "/etag/readers/" + file_upload + "/.json" , function(data){
                // console.log(data)
                 var f1 = Handlebars.templates['tmpl-file-form'];
                 $('#file-form').empty();
