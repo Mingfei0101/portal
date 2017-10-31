@@ -3,7 +3,7 @@
     <div class = "dropdown-reader"> <!--dropdown div-->
       <select class="form-control" id="file-container" size = "10">
         {{#each readers}}
-            <option>{{this.reader_id}}</option>
+            <option value={{this}} >{{this.reader_id}}</option>
         {{/each}}
       </select>
     </div> <!--end of dropdown div-->

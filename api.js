@@ -75,6 +75,7 @@ function load_file_upload(data){
   $('#data-container').append(file_template({readers:data.results}));  
   //Events
   $('#file-container').change(function(){
+      console.log($('#file-container').val());
       file_form($('#file-container').val());
       file_change($('#file-container').val());
   });
