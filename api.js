@@ -335,7 +335,7 @@ function lat_long_change(url) {
 
 function tags_change(tags){
   $('#tag-container').remove();
-  $.getJSON(se_url + "/etag/tag_animal/.json?tag=" + tags, function(data){
+  $.getJSON(base_url + "/etag/tag_animal/.json?tag=" + tags, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {
         results: data.results
@@ -349,7 +349,7 @@ function tags_change(tags){
 //--------------------------------------------------------------
 function file_change(file_upload){
   //$('#file-container').remove();
-  $.getJSON(se_url + "/etag/tag_animal/.json?tag=" + file_upload, function(data){
+  $.getJSON(base_url + "/etag/tag_animal/.json?tag=" + file_upload, function(data){
     var filetabletemplate = Handlebars.templates['tmpl-file-table'];
     var context = {
         results: data.results
