@@ -57,6 +57,29 @@ function load_readers(data){
    //code to select first item in the select box
    $('select option:first-child').attr("selected", "selected").change();
 }
+function load_tags(data){
+  $('#data-container').empty();
+  tags_template = Handlebars.templates['tmpl-tags'];
+  $('#data-container').append(tags_template({readers: data.results}));
+  //Events
+  $('#tags-container').change(function(){
+      tags_form($('#tags-container').val());
+      tags_change($('#tags-container').val());
+  });
+  //code to select first item in the select box
+  $('select option:first-child').attr("selected", "selected").change();
+}
+function load_file_upload(data){
+  $('#data-container').empty();
+  file_template = Handlebars.templates['tmpl-file'];
+  $('#data-container').append(file_template({readers:data.results}));  
+  //Events
+  $('#file-container').change(function(){
+      file_form($('#file-container').val());
+      file_change($('#file-container').val());
+  });
+ $('select option:first-child').attr("selected", "selected").change();
+}
 //End functions used for edit data
 
 function load_home_panel(){
@@ -82,6 +105,8 @@ function load_home_panel(){
       //$('#data-container').empty();
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
+      $('#editTags').click(function(){get_data(base_url +"/etag/tags/.json?page_size=20&ordering=tag_id",load_tags);});
+      $('#ingestData').click(function(){get_data(base_url +"/etag/readers/.json?page_size=20&ordering=reader_id",load_file_upload);});
     //####################################################################  
   $('#tags').empty();
   $.getJSON(base_url + "/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
