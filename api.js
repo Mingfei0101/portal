@@ -75,14 +75,14 @@ function load_file_upload(data){
   $('#data-container').append(file_template({readers:data.results}));  
   //Events
   $('#file-container').change(function(){
-      get_data(base_url + "/etag/readers/" + $('#file-container').val() + "/.json",file-upload-reader-change)
+      get_data(base_url + "/etag/readers/" + $('#file-container').val() + "/.json",file_upload_reader_change)
       /*console.log($('#file-container').val());
       file_form($('#file-container').val());
       file_change($('#file-container').val());*/
   });
  $('select option:first-child').attr("selected", "selected").change();
 }
-function file-upload-reader-change(data){
+function file_upload_reader_change(data){
   var f1 = Handlebars.templates['tmpl-file-form'];
   $('#file-form').empty();
   $('#file-form').append(f1(data));
