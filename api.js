@@ -75,11 +75,20 @@ function load_file_upload(data){
   $('#data-container').append(file_template({readers:data.results}));  
   //Events
   $('#file-container').change(function(){
-      console.log($('#file-container').val());
+      get_data(base_url + "/etag/readers/" + $('#file-container').val() + "/.json",file-upload-reader-change)
+      /*console.log($('#file-container').val());
       file_form($('#file-container').val());
-      file_change($('#file-container').val());
+      file_change($('#file-container').val());*/
   });
  $('select option:first-child').attr("selected", "selected").change();
+}
+function file-upload-reader-change(data){
+  var f1 = Handlebars.templates['tmpl-file-form'];
+  $('#file-form').empty();
+  $('#file-form').append(f1(data));
+  $('#submit_file_button').click(function(){
+	file_upld('submit_file');
+  });
 }
 //End functions used for edit data
 
