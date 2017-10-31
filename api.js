@@ -1,6 +1,6 @@
 $(function() {
     //Customize by setting base_url to cybercom/api docker application
-    base_url = "/api";
+    base_url = "https://head.ouetag.org/api";
     //No other alterations is need to get the standard applicaiton running!
     login_url = base_url + "/api-auth/login/?next=";
     logout_url = base_url + "/api-auth/logout/?next=";
@@ -26,28 +26,65 @@ $(function() {
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
   });//End of Document Ready
-
-  function load_home_panel(){
-  $('#home').empty();
-  $.getJSON("/api/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
-    reader_template = Handlebars.templates['tmpl-readers'];
-    var context = {
-      readers: data.results
-    };
-    console.log('---->>>');  
-    $('#home').append(reader_template(context));
-    $('#readers-container').change(function(){
+//Funtions used for edit data
+function get_data(dataurl, callback){
+  $.getJSON(dataurl,function(data){
+	callback(data);
+  })
+  .error(function(jqXHR, textStatus, errorThrown) {
+ 	alert("Error:"+ textStatus); // + jqXHR.responseText);
+	callback({});
+  });
+}
+function load_uprofile(data){
+  $('#data-container').empty();
+  tmpl=Handlebars.templates['tmpl-user'];
+  $('#data-container').append(tmpl(data));
+  $('#user_form').hide();
+  $('#view_form').show();
+  //Events
+  $('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
+}
+function load_readers(data){
+  $('#data-container').empty();
+  reader_template = Handlebars.templates['tmpl-readers'];
+  $('#data-container').append(reader_template({readers: data.results}));
+  //Events
+  $('#readers-container').change(function(){
       select_change($('#readers-container').val());
       reader_change($('#readers-container').val());
+   });
+   //code to select first item in the select box
+   $('select option:first-child').attr("selected", "selected").change();
+}
+//End functions used for edit data
+
+function load_home_panel(){
+    $('#home').empty();
+    $.getJSON(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
+     reader_template = Handlebars.templates['tmpl-readers'];
+     var context = {
+       readers: data.results
+     };
+     console.log('---->>>');  
+     $('#home').append(reader_template(context));
+     $('#readers-container').change(function(){
+      select_change($('#readers-container').val());
+      reader_change($('#readers-container').val());
+     });
+     //code to select first item in the select box
+     $('select option:first-child').attr("selected", "selected").change();
     });
-    //code to select first item in the select box
-    $('select option:first-child').attr("selected", "selected").change();
-  });
-//##########################################################################
+    //##########################################################################
       $('#viz').empty();
+      lnav_template = Handlebars.templates['tmpl-leftnav'];
+      $('#viz').append(lnav_template({}));
+      //$('#data-container').empty();
+      $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
+      $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
     //####################################################################  
   $('#tags').empty();
-  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+  $.getJSON(base_url + "/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
     var context = {
       readers: data.results
@@ -62,7 +99,7 @@ $(function() {
 //################################################################################
 //file upload functions begins here
 $('#file_upload').empty();
-  $.getJSON("/api/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
+  $.getJSON(base_url +"/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     file_template = Handlebars.templates['tmpl-file'];
     var context = {
       readers: data.results
@@ -93,7 +130,7 @@ function hide_tab(){
 
 function show_tab(){
         console.log('working');
-        set_auth(base_url,login_url);
+        //set_auth(base_url,login_url);
         console.log('hello3');
         $('#tabContent1').show();
         $('[href="#tasks"]').tab('show');
@@ -143,7 +180,7 @@ function form_post(formName){
 function form_submit_insert(formName){
   data = $('#'+formName).serializeObject();
   console.log('called again');
-  url1='http://0.0.0.0/api/etag/reader_location/';
+  url1= base_url + '/etag/reader_location/';
   console.log(data);
   //data = data.serializeObject();
   console.log('called again');
@@ -161,7 +198,7 @@ function form_submit_insert(formName){
 function form_submit_insert1(formName){
   data = $('#'+formName).serializeObject();
   console.log('called again');
-  url1='http://0.0.0.0/api/etag/tag_animal/';
+  url1=base_url +'/etag/tag_animal/';
   console.log(data);
   //data = data.serializeObject();
   console.log('called again');
@@ -175,7 +212,7 @@ function form_submit_insert1(formName){
 //=============================================================================================
 
 function select_change(reader){
-	$.getJSON("/api/etag/readers/" + reader + "/.json" , function(data){
+	$.getJSON(base_url +"/etag/readers/" + reader + "/.json" , function(data){
                 reader_form_template = Handlebars.templates['tmpl-readers-form'];
                 $('#readers-form').empty();
                 $('#readers-form').append(reader_form_template(data));
@@ -185,7 +222,7 @@ function select_change(reader){
 	});
 };
 function tags_form(tags){
-	$.getJSON("/api/etag/tags/" + tags + "/.json" , function(data){
+	$.getJSON(base_url + "/etag/tags/" + tags + "/.json" , function(data){
                 tags_form_template = Handlebars.templates['tmpl-tags-form'];
                 $('#tags-form').empty();
                 $('#tags-form').append(tags_form_template(data));
@@ -198,7 +235,7 @@ function tags_form(tags){
 //-----------------------------
 function file_form(file_upload){
 	
-	$.getJSON("/api/etag/tags/" + file_upload + "/.json" , function(data){
+	$.getJSON(base_url + "/etag/tags/" + file_upload + "/.json" , function(data){
                // console.log(data)
                 var f1 = Handlebars.templates['tmpl-file-form'];
                 $('#file-form').empty();
@@ -250,7 +287,7 @@ function file_upld(formName){
 
 function reader_change(reader){
   $('#grid-container').remove();
-  $.getJSON("/api/etag/reader_location/.json?reader=" + reader, function(data){
+  $.getJSON(base_url + "/etag/reader_location/.json?reader=" + reader, function(data){
     readers_table_template = Handlebars.templates['tmpl-readers-table'];
     var context = {
         results: data.results
@@ -273,7 +310,7 @@ function lat_long_change(url) {
 
 function tags_change(tags){
   $('#tag-container').remove();
-  $.getJSON("/api/etag/tag_animal/.json?tag=" + tags, function(data){
+  $.getJSON(se_url + "/etag/tag_animal/.json?tag=" + tags, function(data){
     tags_table_template = Handlebars.templates['tmpl-tags-table'];
     var context = {
         results: data.results
@@ -287,7 +324,7 @@ function tags_change(tags){
 //--------------------------------------------------------------
 function file_change(file_upload){
   //$('#file-container').remove();
-  $.getJSON("/api/etag/tag_animal/.json?tag=" + file_upload, function(data){
+  $.getJSON(se_url + "/etag/tag_animal/.json?tag=" + file_upload, function(data){
     var filetabletemplate = Handlebars.templates['tmpl-file-table'];
     var context = {
         results: data.results
