@@ -22,7 +22,7 @@ $(function() {
       }
     });
     load_home_panel();
-    $('#submitButton').click("submitForm");
+    //$('#submitButton').click("submitForm");
     //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
   });//End of Document Ready
@@ -72,7 +72,7 @@ function load_tags(data){
 function load_file_upload(data){
   $('#data-container').empty();
   file_template = Handlebars.templates['tmpl-file'];
-  $('#data-container').append(file_template({readers:data.results}));  
+  $('#data-container').append(file_template({readers:data.results}));
   //Events
   $('#file-container').change(function(){
       get_data(base_url + "/etag/readers/" + $('#file-container').val() + "/.json",file_upload_reader_change)
@@ -93,13 +93,13 @@ function file_upload_reader_change(data){
 //End functions used for edit data
 
 function load_home_panel(){
-    $('#home').empty();
+    /*$('#home').empty();
     $.getJSON(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
      reader_template = Handlebars.templates['tmpl-readers'];
      var context = {
        readers: data.results
      };
-     console.log('---->>>');  
+     console.log('---->>>');
      $('#home').append(reader_template(context));
      $('#readers-container').change(function(){
       select_change($('#readers-container').val());
@@ -107,18 +107,18 @@ function load_home_panel(){
      });
      //code to select first item in the select box
      $('select mption:first-child').attr("selected", "selected").change();
-    });
+   });*/
     //##########################################################################
-      $('#viz').empty();
+      $('#custom').empty();
       lnav_template = Handlebars.templates['tmpl-leftnav'];
-      $('#viz').append(lnav_template({}));
+      $('#custom').append(lnav_template({}));
       //$('#data-container').empty();
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
       $('#editTags').click(function(){get_data(base_url +"/etag/tags/.json?page_size=20&ordering=tag_id",load_tags);});
       $('#ingestData').click(function(){get_data(base_url +"/etag/readers/.json?page_size=20&ordering=reader_id",load_file_upload);});
-    //####################################################################  
-  $('#tags').empty();
+    //####################################################################
+  /*$('#tags').empty();
   $.getJSON(base_url + "/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
     tags_template = Handlebars.templates['tmpl-tags'];
     var context = {
@@ -146,22 +146,22 @@ $('#file_upload').empty();
     });
    $('select option:first-child').attr("selected", "selected").change();
   });
- 
-//file upload function ends here....  
+
+//file upload function ends here....
       $('#description').ready(function(){
       console.log('hello');
       $('#tabContent1').hide();
       console.log('hello11');
-  }); 
-      
-  
+  });
+
+  */
 };
 //load_home_panel() function ends here....
 
 function hide_tab(){
         console.log('hello2');
         $('#tabContent1').hide();
-    }  
+    }
 
 function show_tab(){
         console.log('working');
@@ -173,31 +173,31 @@ function show_tab(){
         $('[href="#edit"]').tab('show');
         $('#tasks').hide();
         $('#edit').show();
-    }  
-         
+    }
+
  function show_edit(){
         console.log('hello4');
         $('#edit').show();
-    }   
+    }
 function hide_edit(){
         console.log('hello5');
         $('#edit').hide();
-    }  
-      
+    }
+
 function hide_edit1(){
         console.log('hello7');
         $('#edit').hide();
         $('#tasks').show();
-    } 
+    }
 
-        
+
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
   console.log(data);
   if("latitude" in data){data.latitude=parseFloat(data.latitude)}
   if("longitude" in data){data.longitude=parseFloat(data.longitude)}
-  if("field_data" in data){data.field_data=JSON.parse(data.field_data)}    
+  if("field_data" in data){data.field_data=JSON.parse(data.field_data)}
   $.postJSON(data.url, data, "PUT");
   return false;
 };
@@ -222,7 +222,7 @@ function form_submit_insert(formName){
   //console.log(data.url);
   if("latitude" in data){data.latitude=parseFloat(data.latitude)}
   if("longitude" in data){data.longitude=parseFloat(data.longitude)}
-  
+
   $.postJSON(url1, data, "POST");
   return false;
 };
@@ -240,7 +240,7 @@ function form_submit_insert1(formName){
   //console.log(data.url);
   if("latitude" in data){data.latitude=parseFloat(data.latitude)}
   if("longitude" in data){data.longitude=parseFloat(data.longitude)}
-  
+
   $.postJSON(url1, data, "POST");
   return false;
 };
@@ -269,7 +269,7 @@ function tags_form(tags){
 
 //-----------------------------
 function file_form(file_upload){
-	
+
 	$.getJSON(base_url + "/etag/readers/" + file_upload + "/.json" , function(data){
                // console.log(data)
                 var f1 = Handlebars.templates['tmpl-file-form'];
@@ -291,12 +291,12 @@ function file_form(file_upload){
 function file_upld(formName){
 	console.log('#'+formName);
 	var form = document.getElementById('submit_file');
-	
+
 	var form_data = $('#'+formName).serializeObject();
 	console.log('hello');
 	console.log(form);
 	console.log(form_data);
-	
+
 		/*$.ajax({
         url:'/api/etag/file-upload/',
         type:'post',
@@ -313,9 +313,9 @@ function file_upld(formName){
         error: function(){
 			alert("error in submission");
 			}
-        
+
     }); */
-	
+
 	return false;
 		};
 //------------------------------------------
