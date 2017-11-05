@@ -9,11 +9,11 @@ $(function() {
     reader_url = base_url + "/etag/readers/.json?page_size=20";
     prevlink=null;nextlink=null;
     //set_auth(base_url,login_url);
-    $("#aprofile").click(function(){activaTab('profile')})
+    $("#aprofile").click(function(){activateTab('custom');get_data(user_url,load_uprofile);})
     $("#alogout").click(function(){window.location = logout_url.concat(document.URL);})
-    load_task_history(user_task_url);
-    $('#prevlink').click(function(){load_task_history(prevlink);});
-    $('#nextlink').click(function(){load_task_history(nextlink);});
+    //load_task_history(user_task_url);
+    //$('#prevlink').click(function(){load_task_history(prevlink);});
+    //$('#nextlink').click(function(){load_task_history(nextlink);});
     Handlebars.registerHelper('json_metatags', function(context) {
       if (typeof context !== 'undefined') {
         return JSON.stringify(context).replace(/"/g,'').replace(/\[/g,'').replace(/\]/g,'').replace(/,/g,', ');
@@ -22,10 +22,9 @@ $(function() {
       }
     });
     load_home_panel();
-    //$('#submitButton').click("submitForm");
-    //$('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
-    //$('#user_form').submit(function(){var formData = JSON.parse($("#user_form").serializeArray());console.log(formData);return false;})
-  });//End of Document Ready
+
+});//End of Document Ready
+
 //Funtions used for edit data
 function get_data(dataurl, callback){
   $.getJSON(dataurl,function(data){
@@ -90,6 +89,31 @@ function file_upload_reader_change(data){
 	file_upld('submit_file');
   });
 }
+function load_history(){
+  $('#data-container').empty();
+  template = Handlebars.templates['tmpl-history-table'];
+  $('#data-container').append(template({}));
+  $('#prevlink').click(function(){get_data(prevlink,set_task_history);});
+  $('#nextlink').click(function(){get_data(nextlink,set_task_history);});
+  get_data(user_task_url,set_task_history);
+}
+function set_task_history(data){
+    prevlink = data.previous;
+    nextlink = data.next;
+    if (prevlink == null){$('#li_prevlink').addClass("disabled");} else {$('#li_prevlink').removeClass("disabled");};
+    if (nextlink == null){$('#li_nextlink').addClass("disabled");} else {$('#li_nextlink').removeClass("disabled");};
+    setTaskDisplay(data);
+    //source = $('#tr-template').html();
+    //tr_template = Handlebars.compile(source);
+    tr_template = Handlebars.templates['tmpl-tr']
+    $('#result_tbody').html("")//clear table
+    $.each(data.results, function(i, item) {
+        temp=item.task_name.split('.')
+        item['task_name']= temp[temp.length-1]
+        item.timestamp = item.timestamp.substring(0,19).replace('T',' ')
+        $('#result_tbody').append(tr_template(item))
+    });
+}
 //End functions used for edit data
 
 function load_home_panel(){
@@ -117,6 +141,7 @@ function load_home_panel(){
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
       $('#editTags').click(function(){get_data(base_url +"/etag/tags/.json?page_size=20&ordering=tag_id",load_tags);});
       $('#ingestData').click(function(){get_data(base_url +"/etag/readers/.json?page_size=20&ordering=reader_id",load_file_upload);});
+      $('#ingestHistory').click(function(){load_history()});
     //####################################################################
   /*$('#tags').empty();
   $.getJSON(base_url + "/etag/tags/.json?page_size=20&ordering=tag_id", function(data) {
@@ -157,7 +182,7 @@ $('#file_upload').empty();
   */
 };
 //load_home_panel() function ends here....
-
+/*
 function hide_tab(){
         console.log('hello2');
         $('#tabContent1').hide();
@@ -190,7 +215,7 @@ function hide_edit1(){
         $('#tasks').show();
     }
 
-
+*/
 
 function form_submit(formName){
   data = $('#'+formName).serializeObject();
@@ -466,7 +491,7 @@ function set_auth(base_url,login_url){
         window.location = slink
     });
 }
-function activaTab(tab){
+function activateTab(tab){
     $('a[href="#' + tab + '"]').tab('show')
 };
 function load_task_history(url){
