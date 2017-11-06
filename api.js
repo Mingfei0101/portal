@@ -104,7 +104,9 @@ function upload_async_file(form){
         cache: false,
         contentType: false,
         processData: false,
-
+        beforeSend :function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        },
         // Custom XMLHttpRequest
         xhr: function() {
             var myXhr = $.ajaxSettings.xhr();
