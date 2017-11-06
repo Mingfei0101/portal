@@ -171,6 +171,7 @@ function load_home_panel(){
       $('#custom').empty();
       lnav_template = Handlebars.templates['tmpl-leftnav'];
       $('#custom').append(lnav_template({}));
+      $('#custom').click(function(){set_auth(base_url,login_url);})
       //$('#data-container').empty();
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
