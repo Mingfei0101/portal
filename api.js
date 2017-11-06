@@ -85,7 +85,7 @@ function file_upload_reader_change(data){
   var f1 = Handlebars.templates['tmpl-file-form'];
   $('#file-form').empty();
   $('#file-form').append(f1(data));
-  $('#submit_file_button').click(function
+  $('#submit_file_button').click(function(){
     upload_async_file('submit_file');
 	  //file_upld('submit_file');
   });
