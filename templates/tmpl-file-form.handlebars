@@ -1,10 +1,5 @@
 <form id="submit_file" action="/api/etag/file-upload/" method="post" target=" " enctype="multipart/form-data">
 
-        <div class="form-group" style="display:none">
-          <label class="control-label" for="url">URL</label>
-          <input type="text" class="form-control" name="url" id="url" value="{{ url }}">
-        </div>
-
         <div class="form-group">
           <label class="control-label" for="reader_id">Reader ID</label>
           <input type="text" class="form-control" name="tag_id" id="tag_id" value="{{ reader_id }}">
@@ -19,3 +14,4 @@
           </div>
         </div>
 </form>
+<progress></progress>

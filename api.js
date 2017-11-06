@@ -85,9 +85,44 @@ function file_upload_reader_change(data){
   var f1 = Handlebars.templates['tmpl-file-form'];
   $('#file-form').empty();
   $('#file-form').append(f1(data));
-  $('#submit_file_button').click(function(){
-	file_upld('submit_file');
+  $('#submit_file_button').click(function
+    upload_async_file('submit_file');
+	  //file_upld('submit_file');
   });
+}
+function upload_async_file(form){
+  $.ajax({
+        // Your server script to process the upload
+        url: '/api/etag/file-upload/',
+        type: 'POST',
+
+        // Form data
+        data: new FormData($('#' + form )),
+
+        // Tell jQuery not to process data or worry about content-type
+        // You *must* include these options!
+        cache: false,
+        contentType: false,
+        processData: false,
+
+        // Custom XMLHttpRequest
+        xhr: function() {
+            var myXhr = $.ajaxSettings.xhr();
+            if (myXhr.upload) {
+                // For handling the progress of the upload
+                myXhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                        $('progress').attr({
+                            value: e.loaded,
+                            max: e.total,
+                        });
+                    }
+                } , false);
+            }
+            return myXhr;
+        },
+    });
+
 }
 function load_history(){
   $('#data-container').empty();
