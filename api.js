@@ -91,6 +91,7 @@ function file_upload_reader_change(data){
   });
 }
 function upload_async_file(form){
+  console.log(new FormData($('#' + form )));
   $.ajax({
         // Your server script to process the upload
         url: '/api/etag/file-upload/',
