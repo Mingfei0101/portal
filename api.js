@@ -1,6 +1,6 @@
 $(function() {
     //Customize by setting base_url to cybercom/api docker application
-    base_url = "https://head.ouetag.org/api";
+    base_url = "/api";
     //No other alterations is need to get the standard applicaiton running!
     login_url = base_url + "/api-auth/login/?next=";
     logout_url = base_url + "/api-auth/logout/?next=";
@@ -174,7 +174,7 @@ function load_home_panel(){
       $('#custom').empty();
       lnav_template = Handlebars.templates['tmpl-leftnav'];
       $('#custom').append(lnav_template({}));
-      $('#custom').click(function(){set_auth(base_url,login_url);})
+      $('#custom_tab').click(function(){set_auth(base_url,login_url);})
       //$('#data-container').empty();
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
