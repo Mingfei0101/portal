@@ -35,8 +35,10 @@ function get_data(dataurl, callback){
 	callback({});
   });
 }
+//User profile
 function load_uprofile(data){
   $('#data-container').empty();
+  data.csrftoken = getCookie('csrftoken')
   tmpl=Handlebars.templates['tmpl-user'];
   $('#data-container').append(tmpl(data));
   $('#user_form').hide();
@@ -44,6 +46,7 @@ function load_uprofile(data){
   //Events
   $('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
 }
+//ETAG Funcitons for data manipulation
 function load_readers(data){
   $('#data-container').empty();
   reader_template = Handlebars.templates['tmpl-readers'];
@@ -68,6 +71,7 @@ function load_tags(data){
   //code to select first item in the select box
   $('select option:first-child').attr("selected", "selected").change();
 }
+//File upload for data ingest
 function load_file_upload(data){
   $('#data-container').empty();
   file_template = Handlebars.templates['tmpl-file'];
@@ -84,6 +88,8 @@ function load_file_upload(data){
 function file_upload_reader_change(data){
   var f1 = Handlebars.templates['tmpl-file-form'];
   $('#file-form').empty();
+  //Add CSRF to form to submit
+  data.csrftoken = getCookie('csrftoken')
   $('#file-form').append(f1(data));
   $('#submit_file_button').click(function(){
     upload_async_file('submit_file');
@@ -473,24 +479,20 @@ function reader_add() {
     //});
 };
 
-function submit_user(){
-    console.log(user_url)
+function submit_user(user_div){
+    //checking for default user_dev will be deprecated.
+    user_div = (typeof user_div !== 'undefined') ?  '#'+ user_div : '#profile';
+    //User update
     $.post( user_url,$('#user_form').serializeObject(),function(data){
         data.csrftoken = getCookie('csrftoken')
-        $('#profile').empty();
-        //source = $('#user-template').html()
-        //user_template = Handlebars.compile(source);
+        $(user_div).empty();
         user_template = Handlebars.templates['tmpl-user']
-        $('#profile').append(user_template(data))
+        $(user_div).append(user_template(data))
         $('#user_form').hide()
         $('#view_form').show()
         $('#reset_password').click(function(){$('#pass_form').toggle(!$('#pass_form').is(':visible'));});
     })
-    .fail(function(){ alert("Error Occured on User Update.")});
-    //$('#user_form').hide()
-    //$('#view_form').show()
-    //var formData = JSON.parse($("#user_form").serializeArray());
-    //console.log(formData);
+    .fail(function(){ alert("Error Occured while updating User information.")});
     return false;
 }
 function edit_user(){
