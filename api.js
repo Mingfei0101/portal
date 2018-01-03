@@ -86,7 +86,7 @@ function file_upload_reader_change(data){
   $('#file-form').empty();
   $('#file-form').append(f1(data));
   $('#submit_file_button').click(function(){
-    upload_async_file('submit_file');
+    return upload_async_file('submit_file');
 	  //file_upld('submit_file');
   });
 }
@@ -124,8 +124,12 @@ function upload_async_file(form){
             }
             return myXhr;
         },
+	success: function (data) {
+	  $('#upload_result').empty();
+	  $('#upload_result').append('<a href="' + data.result_url + '" target="_blank">Upload Task Results</a>'); 
+	},
     });
-
+  return false; 
 }
 function load_history(){
   $('#data-container').empty();
