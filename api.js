@@ -163,6 +163,39 @@ function set_task_history(data){
 }
 //End functions used for edit data
 
+function populate_map() {
+    // Setup leaflet map
+    var map = new L.Map('map');
+    var basemapLayer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/github.map-xgq2svrz/{z}/{x}/{y}.png');
+    // Center map and default zoom level
+    map.setView([35.11413, -90.091807], 9); 
+     // Adds the background layer to the map
+     map.addLayer(basemapLayer);
+     // create another variable and then add counts to the reader location
+     $(document).ready(function(){
+        $.getJSON("https://head.ouetag.org/api/etag/reader_location/", function(result){
+            $.each(result.results, function(i,l){
+                var reader = l.reader;
+                var lat = l.latitude;
+                var lon = l.longitude;
+                var location = [lat, lon];
+                var active = l.active;
+                var start = l.start_timestamp;
+                if (active == true){
+                    $.getJSON("https://head.ouetag.org/api/etag/tag_reads/?search&reader="+reader, function(get){
+                        var count = get.count;
+                        var time = get.tag_timestamp;
+                        var tag = get.tag;
+                        var marker = new L.Marker(location)
+                        .bindPopup("station: " + reader +'<br>'+"count: " +count+'<br>'+"starts from: "+start)
+                        .addTo(map);
+                    })
+                }
+            })
+        })
+     }); 
+} 
+
 function load_home_panel(){
     /*$('#home').empty();
     $.getJSON(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id", function(data) {
@@ -184,6 +217,8 @@ function load_home_panel(){
       lnav_template = Handlebars.templates['tmpl-leftnav'];
       $('#custom').append(lnav_template({}));
       $('#custom_tab').click(function(){set_auth(base_url,login_url);})
+      //$('#viz_tab').click(function(){alert("clicked");});
+      $('#viz_tab').click(function(){populate_map()});
       //$('#data-container').empty();
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});

@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bootstrap Template">
     <meta name="Mark Stacy" content="OU IT Informatics">
+    <meta name="Tyler Pearson" content="OU Library Informatics">
     <link rel="stylesheet" href="bower_components/boostrap_style/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
     <link rel="stylesheet" href="style.css">
+  
 </head>
 <body style="padding:5px;">
 <nav class="navbar navbar-default">
@@ -41,7 +44,7 @@
     <ul id='myTab' class="nav nav-tabs  " role="tablist">
         <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab" >Description</a></li>
 
-        <li role="presentation"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab" >Visualization</a></li>
+        <li role="presentation" id="viz_tab"><a href="#viz" aria-controls="viz" role="tab" data-toggle="tab" >Visualization</a></li>
         <li role="presentation" id="custom_tab"><a href="#custom" aria-controls="custom" role="tab" data-toggle="tab" >Custom</a></li>
     <!--    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Readers</a></li>
         <li role="presentation"><a href="#tags" aria-controls="tags" role="tab" data-toggle="tab">Tags</a></li>
@@ -64,7 +67,8 @@
             both for producing novel science and for sharing their work with their peers and the general public.</p>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="viz">
-
+             <div id="map"></div>
+	     <!--<script src="https://head.ouetag.org/api/etag/tag_reads/?format=jsonp"></script>-->
         </div>
         <div role="tabpanel" class="tab-pane fade" id="custom">
     </div>
@@ -94,6 +98,9 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="bower_components/handlebars/handlebars.runtime.min.js"></script>
+<script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+<script src="bower_components/leaflet/dist/leaflet.js"></script>
 <script src="api.js"></script>
 <script src="templates.js"></script>
+
 </html>

@@ -3,6 +3,9 @@ body {background-color:#ebebeb;}
     padding-top: 10px;
     padding-bottom: 10px;
 }
+#map{
+   height:100%
+}
 .nav-tabs {
     margin-bottom: -1px;
 }
