@@ -85,6 +85,12 @@ function load_file_upload(data){
   });
  $('select option:first-child').attr("selected", "selected").change();
 }
+function load_generic_file_upload(data){
+  $('#data-container').empty();
+  data.csrftoken = getCookie('csrftoken')
+  file_template = Handlebars.templates['tmpl-file-generic-form'];
+  $('#data-container').append(file_template(data));
+}
 function file_upload_reader_change(data){
   var f1 = Handlebars.templates['tmpl-file-form'];
   $('#file-form').empty();
@@ -136,6 +142,18 @@ function upload_async_file(form){
     });
   return false; 
 }
+function load_tagged_animals(data){
+  $('#data-container').empty();
+  template = Handlebars.templates['tmpl-tagged-animals'];
+  $('#data-container').append(template({animals: data.results}));
+  //Events
+  $('#readers-container').change(function(){
+      select_change($('#readers-container').val());
+      reader_change($('#readers-container').val());
+   });
+   //code to select first item in the select box
+   $('select option:first-child').attr("selected", "selected").change();
+}
 function load_history(){
   $('#data-container').empty();
   template = Handlebars.templates['tmpl-history-table'];
@@ -166,14 +184,27 @@ function set_task_history(data){
 function populate_map() {
     // Setup leaflet map
     var map = new L.Map('map');
-    var basemapLayer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/github.map-xgq2svrz/{z}/{x}/{y}.png');
+    var basemapLayer = new L.TileLayer('https://api.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      mapId: 'mapbox.outdoors',
+      accessToken: '' // TODO: Add your access token!
+    });
+    // TODO: This is hard coded for example - needs to be updated to get values from api call
+    var species = {
+      "All": L.layerGroup(),
+      "Anhinga": L.layerGroup(),
+      "Blue Jay": L.layerGroup(),
+      "Bobolink": L.layerGroup(),
+      "Eastern Bluebird": L.layerGroup(),
+      "Lapland Longspur": L.layerGroup()
+    };
     // Center map and default zoom level
     map.setView([35.11413, -90.091807], 9); 
      // Adds the background layer to the map
      map.addLayer(basemapLayer);
      // create another variable and then add counts to the reader location
+     L.control.layers(species,null,{collapsed:false}).addTo(map); 
      $(document).ready(function(){
-        $.getJSON("https://head.ouetag.org/api/etag/reader_location/", function(result){
+        $.getJSON("/api/etag/reader_location/", function(result){
             $.each(result.results, function(i,l){
                 var reader = l.reader;
                 var lat = l.latitude;
@@ -182,7 +213,7 @@ function populate_map() {
                 var active = l.active;
                 var start = l.start_timestamp;
                 if (active == true){
-                    $.getJSON("https://head.ouetag.org/api/etag/tag_reads/?search&reader="+reader, function(get){
+                    $.getJSON("/api/etag/tag_reads/?search&reader="+reader, function(get){
                         var count = get.count;
                         var time = get.tag_timestamp;
                         var tag = get.tag;
@@ -223,7 +254,10 @@ function load_home_panel(){
       $('#user-profile').click(function(){get_data(user_url,load_uprofile);});
       $('#editReaders').click(function(){get_data(base_url + "/etag/readers/.json?page_size=20&ordering=reader_id",load_readers);});
       $('#editTags').click(function(){get_data(base_url +"/etag/tags/.json?page_size=20&ordering=tag_id",load_tags);});
-      $('#ingestData').click(function(){get_data(base_url +"/etag/readers/.json?page_size=20&ordering=reader_id",load_file_upload);});
+      //$('#taggedAnimals').click(function(){get_data(base_url +"/etag/tag_animal/.json?page_size=20&ordering=tag",load_tagged_animals);});
+      $('#taggedAnimals').click(function(){load_generic_file_upload({name:"Tagged Animals"})});
+      $('#readerLocations').click(function(){load_generic_file_upload({name:"Reader Locations"})});
+      $('#tagReads').click(function(){load_generic_file_upload({name:"Tag Reads"})});
       $('#ingestHistory').click(function(){load_history()});
     //####################################################################
   /*$('#tags').empty();
@@ -395,6 +429,14 @@ function file_form(file_upload){
 	});
 };
 
+function file_generic_form(file_upload){
+    var f1 = Handlebars.templates['tmpl-file-generic-form'];
+    $('#file-form').empty();
+    $('#file-form').append(f1(data));
+    $('#submit_file_button').click(function(){
+      file_upld('submit_file');
+    });
+}
 
 function file_upld(formName){
 	console.log('#'+formName);

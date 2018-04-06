@@ -31,6 +31,18 @@ templates['tmpl-file-form'] = template({"compiler":[7,">= 4.0.0"],"main":functio
     + alias4(((helper = (helper = helpers.reader_id || (depth0 != null ? depth0.reader_id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reader_id","hash":{},"data":data}) : helper)))
     + "\">\n      </div>\n      <div class=\"form-group\">\n          <label class=\"control-label\" for=\"file\">File Upload</label>\n	  <input type=\"file\" name=\"upload_file\" id=\"upload_file\">\n      </div>\n      <div class=\"form-group\">\n          <div class=\"sumbit1\">\n            <button id=\"submit_file_button\" >Submit</button>\n          </div>\n      </div>\n</form>\n<progress class=\"progress-bar progress-bar-success\"/>\n<div id=\"upload_result\"></div>\n";
 },"useData":true});
+templates['tmpl-file-generic-form'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<form id=\"submit_file\" action=\"/api/etag/file-upload/\" method=\"POST\"  enctype=\"multipart/form-data\">\n      <div style=\"display:none\">\n          <input type=\"hidden\" name=\"csrfmiddlewaretoken\" value=\""
+    + alias4(((helper = (helper = helpers.csrftoken || (depth0 != null ? depth0.csrftoken : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"csrftoken","hash":{},"data":data}) : helper)))
+    + "\"/>\n      </div>\n      <div class=\"form-group\">\n          <label class=\"control-label\" for=\"file\">Upload "
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</label>\n	  <input type=\"file\" name=\"upload_file\" id=\"upload_file\">\n      </div>\n      <div class=\"form-group\">\n          <div class=\"sumbit1\">\n            <button id=\"submit_file_button\" >Submit</button>\n          </div>\n      </div>\n</form>\n<progress class=\"progress-bar progress-bar-success\"/>\n<div id=\"upload_result\"></div>\n";
+},"useData":true});
+templates['tmpl-file-generic'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<div> <!--beginning div-->\n  <div class = \"file-container\"> <!--file container div-->\n    <div class = \"dropdown-reader\"> <!--dropdown div-->\n    </div> <!--end of dropdown div-->\n\n    <div id=\"file-generic-form\" class=\"form-container\"> <!--form div-->\n    </div> <!--end of form div-->\n   <!-- <div id=\"file-table\" class = \"table-container\">\n    </div>  -->\n  </div> <!--end of container div-->\n</div> <!--ending div-->\n";
+},"useData":true});
 templates['tmpl-file-table'] = template({"1":function(container,depth0,helpers,partials,data) {
     var alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -67,7 +79,7 @@ templates['tmpl-history-table'] = template({"compiler":[7,">= 4.0.0"],"main":fun
     return "<div class=\"col-lg-8\"><h2>Task History</h2>\n<h4 id=\"task_count\"></h4>\n<table class=\"table table-striped table-bordered table-condensed table-hover\" id='resulttable'>\n  <tr>\n      <th>Task Name</th>\n      <th>Timestamp</th>\n      <th>Metadata Tags</th>\n      <!--<th>Result</th>-->\n  </tr>\n<tbody id='result_tbody'>\n  </tbody>\n</table>\n<nav>\n<ul class=\"pager\">\n    <li id=\"li_prevlink\" class=\"disabled\"><a id=\"prevlink\" href=\"#\"><span aria-hidden=\"true\">&larr;</span> Previous</a></li>\n    <li id=\"li_nextlink\" ><a id=\"nextlink\" href=\"#\">Next <span aria-hidden=\"true\">&rarr;</span></a></li>\n</ul>\n</nav>\n</div>\n";
 },"useData":true});
 templates['tmpl-leftnav'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\" navbar  navbar-fixed-left\">\n  <ul class=\"nav navbar-nav\">\n   <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Edit Data <span class=\"caret\"></span></a>\n     <ul class=\"dropdown-menu\" role=\"menu\">\n      <li><a id=\"editReaders\" href=\"#\">Readers</a></li>\n      <li><a id=\"editTags\" href=\"#\">Tags</a></li>\n     </ul>\n   </li>\n   <li class=\"divider\"></li>\n   <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Ingest Data<span class=\"caret\"></span></a>\n     <ul class=\"dropdown-menu\" role=\"menu\">\n      <li><a id=\"ingestData\" href=\"#\">Upload Data</a></li>\n      <li><a id=\"ingestHistory\" href=\"#\">History</a></li>\n     </ul>\n   </li>\n   <li class=\"divider\"></li>\n   <li><a id=\"user-profile\" href=\"#\">User Profile</a></li>\n  </ul>\n</div>\n<div class=\"col-lg-8\">\n <div id=\"data-container\" class=\"col-md-08\">\n   <h3>Select Item from Menu</h3>\n </div>\n</div>\n";
+    return "<div class=\" navbar  navbar-fixed-left\">\n  <ul class=\"nav navbar-nav\">\n   <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Edit Data <span class=\"caret\"></span></a>\n     <ul class=\"dropdown-menu\" role=\"menu\">\n      <li><a id=\"editReaders\" href=\"#\">Readers</a></li>\n      <li><a id=\"editTags\" href=\"#\">Tags</a></li>\n     </ul>\n   </li>\n   <li class=\"divider\"></li>\n   <li class=\"dropdown\"><a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Upload Data<span class=\"caret\"></span></a>\n     <ul class=\"dropdown-menu\" role=\"menu\">\n      <li><a id=\"taggedAnimals\" href=\"#\">Tagged Animals</a></li>\n      <li><a id=\"readerLocations\" href=\"#\">Reader Locations</a></li>\n      <li><a id=\"tagReads\" href=\"#\">Tag Reads</a></li>\n     </ul>\n   </li>\n   <li class=\"divider\"></li>\n   <li><a id=\"ingestHistory\" href=\"#\">History</a></li>\n   <li class=\"divider\"></li>\n   <li><a id=\"user-profile\" href=\"#\">User Profile</a></li>\n  </ul>\n</div>\n<div class=\"col-lg-8\">\n <div id=\"data-container\" class=\"col-md-08\">\n   <h3>Select Item from Menu</h3>\n </div>\n</div>\n";
 },"useData":true});
 templates['tmpl-location-popup'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -126,6 +138,17 @@ templates['tmpl-new-location-popup'] = template({"compiler":[7,">= 4.0.0"],"main
     + alias4(((helper = (helper = helpers.active || (depth0 != null ? depth0.active : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"active","hash":{},"data":data}) : helper)))
     + " checked> Active\n        </label>\n      </div>\n\n        <div class=\"form-group\">\n          <div class=\"sumbit\">\n            <button class=\"btn btn-primary\" id=\"submitButton\" value=\"PUT\">Submit</button>\n          </div>\n        </div>\n</form>\n";
 },"useData":true});
+templates['tmpl-reader-locations'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <option>"
+    + container.escapeExpression(container.lambda((depth0 != null ? depth0.tag_id : depth0), depth0))
+    + "</option>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div> <!--beginning div-->\n  <div class = \"tab-container\"> <!--tab container div-->\n    <div class = \"dropdown-reader\"> <!--dropdown div-->\n      <select class=\"form-control\" id=\"tags-container\" size = \"10\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.readers : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      </select>\n    </div> <!--end of dropdown div-->\n\n    <div id=\"tags-form\" class=\"form-container\"> <!--form div-->\n    </div> <!--end of form div-->\n    <div id=\"tags-table\" class = \"table-container\">\n    </div>\n  </div> <!--end of container div-->\n</div> <!--ending div-->\n";
+},"useData":true});
 templates['tmpl-readers-form'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -172,6 +195,28 @@ templates['tmpl-readers'] = template({"1":function(container,depth0,helpers,part
   return "<div> <!--beginning div-->\n  <div class = \"tab-container\"> <!--tab container div-->\n    <div class = \"dropdown-reader\"> <!--dropdown div-->\n      <select class=\"form-control\" id=\"readers-container\" size = \"10\">\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.readers : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "      </select>\n    </div> <!--end of dropdown div-->\n\n    <div id=\"readers-form\" class=\"form-container\"> <!--form div-->\n    </div> <!--end of form div-->\n    <div id=\"readers-table\" class = \"table-container\"> <!--table div-->\n    </div> <!--end of table div-->\n  </div> <!--end of container div-->\n</div> <!--ending div-->\n";
+},"useData":true});
+templates['tmpl-tag-reads'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <option>"
+    + container.escapeExpression(container.lambda((depth0 != null ? depth0.tag_id : depth0), depth0))
+    + "</option>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div> <!--beginning div-->\n  <div class = \"tab-container\"> <!--tab container div-->\n    <div class = \"dropdown-reader\"> <!--dropdown div-->\n      <select class=\"form-control\" id=\"tags-container\" size = \"10\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.readers : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      </select>\n    </div> <!--end of dropdown div-->\n\n    <div id=\"tags-form\" class=\"form-container\"> <!--form div-->\n    </div> <!--end of form div-->\n    <div id=\"tags-table\" class = \"table-container\">\n    </div>\n  </div> <!--end of container div-->\n</div> <!--ending div-->\n";
+},"useData":true});
+templates['tmpl-tagged-animals'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <option>"
+    + container.escapeExpression(container.lambda((depth0 != null ? depth0.tag : depth0), depth0))
+    + "</option>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div> <!--beginning div-->\n  <div class = \"tab-container\"> <!--tab container div-->\n    <div class = \"dropdown-reader\"> <!--dropdown div-->\n      <select class=\"form-control\" id=\"tags-container\" size = \"10\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.animals : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "      </select>\n    </div> <!--end of dropdown div-->\n\n    <div id=\"tags-form\" class=\"form-container\"> <!--form div-->\n    </div> <!--end of form div-->\n    <div id=\"tags-table\" class = \"table-container\">\n    </div>\n  </div> <!--end of container div-->\n</div> <!--ending div-->\n";
 },"useData":true});
 templates['tmpl-tags-form'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
