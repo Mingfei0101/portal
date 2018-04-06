@@ -186,7 +186,7 @@ function populate_map() {
     var map = new L.Map('map');
     var basemapLayer = new L.TileLayer('https://api.tiles.mapbox.com/v4/{mapId}/{z}/{x}/{y}.png?access_token={accessToken}', {
       mapId: 'mapbox.outdoors',
-      accessToken: '' // TODO: Add your access token!
+      accessToken: ''
     });
     // TODO: This is hard coded for example - needs to be updated to get values from api call
     var species = {
@@ -224,7 +224,11 @@ function populate_map() {
                 }
             })
         })
-     }); 
+     });
+     // Hack to redraw leaflet map
+     setTimeout(function(){
+	map.invalidateSize();
+     }, 500);
 } 
 
 function load_home_panel(){
